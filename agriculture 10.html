@@ -87,14 +87,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     </div>
   </header>
   <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Area, Production, Yield Statistics of Rice in India (1950-2022)</b></h4><br>
+    <h4><b>Area, Production, Yield Statistics of Coffee in India(1950-2020)</b></h4><br>
     <div class="w3-row-padding">
       <div class="table"></div>
     <script>
         let table = document.querySelector(".table");
         (
             async() => {
-                let workbook = XLSX.read(await (await fetch("./agriculture 4.xlsx")).arrayBuffer());
+                let workbook = XLSX.read(await (await fetch("./agriculture 10.xlsx")).arrayBuffer());
                 console.log(workbook);
                 let worksheet = workbook.SheetNames;
                 worksheet.forEach(name => {
@@ -106,8 +106,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             }
         )()
     </script>
-  <p>Source: EPWRF ( Economic & Political Weekly Research Foundation) 1950-2022</p>
-  <p>Description : Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India</p>
+  <p>Source: EPWRF( Economic and Political Weekly Research Foundation) 1950-2020</p>
+  <p>Source Description: 1962-63 to 1969-70: Plantation Crops: Cashewnut:-> Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India1962-63 to 2013-14 - Plantation Crops: Coffee: Area:-> Area refers to the total planted area.</p>
+  <p>1962-63 to 2013-14 - Plantation Crops: Coffee: Yield:-> For Coffee, yield has been worked out on plucked area.</p>
+  <p>2016-17 to 2020-21 - Data for the years are Final Estimates as released on 04.07.2022</p>
+  <p>2018-19 to 2018-19 - Plantation Crops: Coffee: Production: All-India:-> Data for the year 2018-19 are Post Monsoon Estimates.</p>
+  <p>Plantation Crops: Coffee: Area:-> Coffee Area refers to total planted area.</p>
+  <p>Plantation Crops: Coffee: Yield:-> Coffee Yield is based on plucked area.</p>
+  <p>Source Description: Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India</p>
 <!-- End page content -->
 </div>
 
