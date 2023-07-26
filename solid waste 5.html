@@ -87,14 +87,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     </div>
   </header>
   <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>State-wise STP's, Sewage Generation and Treatment Capacity of India(2014,2020)</b></h4><br>
+    <h4><b>State-wise Details on Hazardous Waste Generation(2017-2021)</b></h4><br>
     <div class="w3-row-padding">
       <div class="table"></div>
     <script>
         let table = document.querySelector(".table");
         (
             async() => {
-                let workbook = XLSX.read(await (await fetch("./solid waste 4.xlsx")).arrayBuffer());
+                let workbook = XLSX.read(await (await fetch("./solid waste 5.xlsx")).arrayBuffer());
                 console.log(workbook);
                 let worksheet = workbook.SheetNames;
                 worksheet.forEach(name => {
@@ -106,9 +106,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
             }
         )()
     </script>
-  <p>Source:Central Pollution Control Board-Annual Report 2020-21</p>
-  <p>STP:Sewage Treatment Plant.</p>
-  <p>Mld:Minimal liquid discharge</p>
+  <p>Source: Central Pollution Control Board- (National Inventory on Hazardous and Other Wastes Generation and its Management(2017-2021))</p>
+  <p>Note:2020-21:Andhra Pradesh, Arunachal Pradesh, Chattisgarh, Delhi, Goa,Gujarat, Haryana, Jammu &Kashmir,Jharkhand, Kerala, Karnataka, Madhya Pradesh, Maharashtra, Odisha, Pondichery, Punjab, Rajasthan, Tripura, Sikkim, Uttar Pradesh, Uttarakhand, West Bengal-  Revised annual inventory has not submitted by these SPCB's / PCC's</p>
+  <p>2019-20:Andhra Pradesh, A&N Island,Chattisgarh, Damn Diu, Delhi, Gujarat, Jharkhand,Madhya Pradesh, Rajasthan, Odisha, Himachal Pradesh, Punjab,Uttar Pradesh, Uttarakhand, West Bengal</p>
+  <p>INP: Information not provided</p>
+  <p>2018-19: Andhra Pradesh, Haryana,Karnataka, Meghalaya, Punjab, Rajasthan,Telengana, Damn Diu&DNH-SPCB's and PCC's have not provided revised inventory.</p>
+  <p>2017-18: Haryana, J&K, Jharkhand, Karnataka, Kerala, Mizoram,  Madhya Pradesh,Meghalaya, Punjab, Rajasthan, Telengana Revised annual inventory has not submitted by these SPCB's / PCC's</p>
+  <p>A&N Island, Lakshadeep, Manipur, Telengana- data pertains to 2016-17, as inventory report of 2017-18 not provided these states.</p>
 <!-- End page content -->
 </div>
 
