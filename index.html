@@ -1,363 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">"
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-}
-nav{
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
-    font-size: larger;
-}
-.logo{
-    width: 130px;
-}
-nav ul li{
-    display: inline-block;
-    list-style: none;
-    margin: 10px 15px;
-    margin-right: 100px;
-     border: 1px solid black;
-     border-radius: 30px;
-    padding: 15px;
-}
-nav ul li a{
-    text-decoration: none;
-    color: #333;
-    font-weight: 400;
-}
-.content{
-    margin-top: 10px;
-    max-width: 100%;
-    padding-top:0;
-    line-height: 34px;
-}
-.content p{
-    font-family:'Inter';
-}
-.name{
-    line-height: 40px;
-}
-.box{
-    background-color: rgb(219, 219, 219);
-    border: 2px solid whitesmoke;
-    width: 150px;
-    height: 180px;
-    border-radius: 30px;
-    font-weight: bold; 
-    justify-content: center;
-    
-}
-.boxes{
-    justify-content: space-between;
-    display: flex;
-    padding: 70px;
-    text-align: center;
-}
-.image{
-   
-    width: 120px;
-    border-radius: 30px;
-    margin-top: 10px;
-}
-.boxes p{
-    font-weight: bolder;
-}
-.box:hover{
-    box-shadow:0 0 30px rgb(95, 95, 95);
-}
-.footer_box {
-  background: rgb(145, 144, 144);
-  width: 25%;
-  height: 200px;
-  border-radius: 30px;
-  display: flex;              /* use flexbox */
-  flex-direction: column;     /* stack icon and text vertically */
-  align-items: center;        /* center horizontally */
-  justify-content: center;    /* center vertically */
-  transition: transform 0.3s ease;
-  color: white;
-  text-align: center;
-}
-.footer_boxes{
-    display: flex;
-    justify-content: space-between;
-    margin-left: 100px;
-    margin-right: 100px;
-    text-align: center;
-}
-.footer_boxes p{
-    font-size: large;
-    font-weight: bold;
-}
-/* Increase size of footer icons */
-.footer_box i {
-  font-size: 3rem;   /* increase icon size */
-  margin-bottom: 20px;
-  color: #ffffff;    /* keep them bright white */
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-/* Optional: subtle hover animation */
-.footer_box:hover i {
-  transform: scale(1.2);
-  color: #00ff99;    /* light green glow on hover */
-}
-.powered_by{
-    width: 100%;
-    background: #000000;
-    margin-top: 10px;
-}
-.powered_by h3{
-    color: white;
-    padding: 10px;
-}
-.for_contact_powered {
-    background: #333;
-}
-.footer .for_contact_powered h2{
-    color: #ffffff;
-    padding-top: 10px;
-}
-
-
-
-  /* --------------------------- */
-    /* RESPONSIVE DESIGN SECTION  */
-    /* --------------------------- */
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Government College Kasaragod - Open Data Lab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Blue and clear color palette */
+      --bg: #EFF6FF;               /* Light, clear blue background */
+      --surface: #ffffff;          /* Crisp white surface */
+      --accent: #3B82F6;           /* Bright blue accent */
+      --accent2: #2563EB;          /* Deep blue accent */
+      --muted: #334155;            /* Muted navy for text */
+      --outline: #E0E7EF;          /* Light blue border */
+      --text: #263238;             /* Almost black for maximum clarity */
+      --hover: #F0F9FF;            /* Very pale blue for hover */
+      --footer-bg: #3B82F6;        /* Medium blue for footer */
+      --footer-fg: #FFFFFF;        /* White footer text */
+      --shadow-box: 0 4px 24px rgba(59, 130, 246, 0.12), 0 1.5px 3px rgba(59,130,246,0.11);
+      --shadow-pop: 0 10px 28px rgba(59, 130, 246, 0.15), 0 2px 4px rgba(59, 130, 246, 0.16);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    nav {
+      padding: 18px 36px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--outline);
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.04);
+    }
+    .logo {
+      width: 110px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 18px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      border: 2px solid grey;
+      border-radius: 30px;
+    }
+    nav ul li a:hover {
+      background: var(--hover);
+      color: var(--accent);
+    }
+    .name {
+      text-align: center;
+      padding: 40px 0 10px;
+    }
+    .name h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .name h2 {
+      font-size: 1.15rem;
+      color: var(--accent);
+      margin-bottom: 13px;
+      font-weight: 400;
+      letter-spacing: 0.7px;
+    }
+    hr {
+      border: none;
+      height: 2px;
+      background: var(--outline);
+      width: 92%;
+      margin: 24px auto;
+    }
+    .content {
+      max-width: 880px;
+      margin: 24px auto;
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 33px 28px;
+      border: 2px solid var(--outline);
+      box-shadow: var(--shadow-box);
+    }
+    .content h2 {
+      font-size: 1.22rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--accent2);
+    }
+    .content p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 13px;
+      opacity: 0.98;
+    }
+    .boxes {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin: 40px auto 48px;
+      max-width: 900px;
+    }
+    .box {
+      background: var(--surface);
+      border-radius: 16px;
+      min-width: 145px;
+      max-width: 180px;
+      min-height: 180px;
+      padding: 20px 0 10px;
+      text-decoration: none;
+      border: 2px solid var(--outline);
+      color: var(--accent2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: border 0.22s, background 0.22s, transform 0.20s, box-shadow 0.20s;
+      box-shadow: var(--shadow-box);
+      will-change: transform;
+    }
+    .box:hover {
+      border: 2px solid var(--accent);
+      background: var(--hover);
+      color: var(--accent);
+      box-shadow: var(--shadow-pop);
+      transform: scale(1.055);
+      z-index: 2;
+    }
+    .image {
+      width: 72px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 1.5px 9px rgba(59,130,246,0.09);
+    }
+    .box p {
+      font-weight: 600;
+      font-size: 1.07rem;
+      margin-top: 2px;
+      letter-spacing: 0.3px;
+      color: inherit;
+    }
+    /* Contact section styling */
+    .footer {
+      background: var(--footer-bg);
+      color: var(--footer-fg);
+      padding: 38px 0 0;
+      margin-top: 20px;
+      border-top-left-radius: 38px;
+      border-top-right-radius: 38px;
+      box-shadow: 0 -6px 24px rgba(59, 130, 246, 0.09);
+    }
+    .footer h2 {
+      color: var(--footer-fg);
+      margin-bottom: 22px;
+      font-size: 1.32rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .footer_boxes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 8px;
+    }
+    .footer_box {
+      background: var(--surface);
+      border-radius: 18px;
+      width: 210px;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 11px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      text-align: center;
+      border: 2px solid var(--outline);
+      box-shadow: var(--shadow-box);
+      transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+      will-change: transform;
+    }
+    .footer_box i {
+      font-size: 2.2rem;
+      color: var(--accent2);
+      margin-bottom: 13px;
+      transition: color 0.20s, transform 0.20s;
+    }
+    .footer_box:hover {
+      box-shadow: var(--shadow-pop);
+      transform: scale(1.05);
+      background: var(--hover);
+      color: var(--accent2);
+    }
+    .footer_box:hover i {
+      color: var(--accent);
+      transform: scale(1.12);
+    }
+    .footer_box p {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .powered_by {
+      width: 100%;
+      margin-top: 16px;
+      padding-top: 12px;
+      color: var(--footer-fg);
+      font-size: 1.01rem;
+      text-align: center;
+      background: none;
+      border-top: 2px solid rgba(255,255,255,0.14);
+      letter-spacing: 0.1px;
+    }
+    /* Responsive styling */
     @media (max-width: 1024px) {
       .content {
-        padding: 15px;
+        padding-left: 4vw;
+        padding-right: 4vw;
       }
       .boxes {
-        gap: 20px;
+        gap: 22px;
+      }
+      .footer_boxes {
+        gap: 24px;
       }
     }
-
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
       nav {
         flex-direction: column;
+        padding: 12px 8px;
+        gap: 10px;
       }
-
-      nav ul {
-        flex-direction: column;
-        margin-left: 50px;
-      }
-
-      nav ul li {
-        margin:8px 0;
-        width: 80%;
-        text-align: center;
-        align-items: center;
-      }
-
-      .name h1 {
-        font-size: 1.6em;
-      }
-
       .boxes {
         flex-direction: column;
-        align-items: center;
+        gap: 18px;
+        max-width: 100vw;
       }
-
       .box {
-        width: 70%;
+        min-width: 80vw;
+        max-width: 96vw;
+        margin: 0 auto;
       }
-
+      .content {
+        padding: 20px 6vw;
+      }
       .footer_boxes {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .footer_box {
-        width: 80%;
-        margin-top: 5px;
+        gap: 14px;
       }
     }
-
     @media (max-width: 480px) {
       .logo {
-        width: 100px;
+        width: 70px;
       }
-
-      nav ul li {
-        padding: 8px;
-        font-size: 0.9rem;
-      }
-
-      .name h1 {
-        font-size: 1.3em;
-      }
-
       .content {
-        font-size: 0.95rem;
-        padding: 10px;
+        font-size: 0.97rem;
+        padding: 14px 3vw;
       }
-
       .box {
-        width: 90%;
-        height: 180px;
+        padding: 16px 0 8px;
+        min-width: 95vw;
+        max-width: 100vw;
       }
-
-      .image {
-        width: 100px;
+      .footer_box {
+        width: 98vw;
+        min-height: 70px;
+        padding: 2vw 1vw;
       }
-
-      .footer_box i {
-        font-size: 2.5rem;
+      nav ul {
+        flex-direction: column;
+        gap: 9px;
+        padding-top: 7px;
+        align-items: center;
       }
-
-      .powered_by h3 {
-        font-size: 0.9rem;
-      }
+      .name h1 { font-size: 1.3em;}
+      .name h2 { font-size: 1em;}
     }
-    </style>
+  </style>
 </head>
 <body>
-    
-    <div class="full">
-        <nav>
-            <img src="Open.png" alt="logo" class="logo">
-            <ul>
-                <li><a href="#content">OUR WORKS</a></li>
-                <li><a href="#about">ABOUT US</a></li>
-                <li><a href="#contact">CONTACT US</a></li>
-        </nav>
-        
-        <div class="name">
-        <h1><center>Government College Kasaragod</center></h1>
-        <h2><center>G C K Open Data Lab</center></h2>
-        <hr>
+  <div class="full">
+    <nav>
+      <img src="Open.png" alt="logo" class="logo">
+      <ul>
+        <li><a href="#content">OUR WORKS</a></li>
+        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#contact">CONTACT US</a></li>
+      </ul>
+    </nav>
+    <div class="name">
+      <h1>Government College Kasaragod</h1>
+      <h2>G C K Open Data Lab</h2>
+      <hr>
+    </div>
+    <div class="content" id="content">
+      <h2>Socio-economic Data</h2>
+      <p>Performance Linked Enhancement of Academic Studies and Endeavour (PLEASE)
+      project proposes to setup practices and framework for releasing public data for the
+      state of Kerala. The proposed project aims to study and put in place practices to
+      curate public data and convert such data into highly accessible and machine-
+      friendly linked open data formats.</p>
+      <p>Socioeconomic data refers to information that describes the economic and social
+      characteristics of a population, such as income, education level, employment
+      status, occupation, and household composition. It can be collected through a
+      variety of sources, including surveys, census data, and administrative records.
+      Here, focus area of socio-economic data includes: Technology, employment and
+      labour market data, innovation survey in agriculture, data on the social capital
+      network and local governance and data on environmental issues with specific to
+      solid waste management.</p>
+      <p>Technology, employment and labour market data mainly focus on firm level data
+        on technology, employment and wage structure in the unorganized labour market
+        and also the presence of modern technology in the work place. Collecting firm-
+        level data on technology, employment, and wage structure can provide valuable
+        insights into the labor market and help identify trends and challenges that workers
+        and employers face.</p>
+      <p>Analyzing these types of data can help policymakers and researchers identify areas
+        where workers may need additional support or training, as well as areas where
+        firms may need incentives to invest in new technologies or create new jobs. By
+        understanding the dynamics of the labor market and the impact of technology on
+        employment and wages, policymakers can develop policies and programs that
+        support workers and promote economic growth.</p>
+      <p>Innovation survey in agriculture data focus on data about the various technologies
+        invented in the agriculture like introduction of wide variety of seeds, irrigation
+        facilities, tractors, tillers, etc. We mainly included APY statistics (Area, Production
+        and productivity) of various agricultural crops such as rice, wheat, tea, rubber,
+        cardamom, coffee, pepper etc of Kerala & India and district wise statistics of Area,
+        Production, Productivity (APY) of rice, black pepper, cardamom, banana, cashew
+        nut, cotton (lint), and turmeric of Kerala. Along with this, data on raw materials for
+        agriculture such as wide variety of seeds, irrigation facilities, tractors, tillers,
+        rainfall etc. are included in the data portal. Collecting data on innovation in
+        agriculture can provide important insights into the ways in which new technologies
+        and practices are transforming the sector. We are providing agriculture data from
+        reliable open sources such as Economic Review, EPWRF (Economic and Political
+        Weekly Research Foundation), Meteorological Department, DES (Directorate of
+        Economics & Statistics), Indiastat, Rubber Board.</p>
+      <p>By collecting and analyzing this type of data, policymakers and researchers can
+        gain a deeper understanding of the challenges and opportunities facing the
+        agricultural sector. This can help to frame policies and programs that support the
+        adoption of new technologies, improve productivity, and promote sustainable and
+        equitable growth in agriculture.</p>
+      <p>Solid waste management mainly focuses on data on household solid waste
+        generation, involvement of public- private participation and data on the
+        employment opportunity and empowerment of economically and socially
+        disadvantaged groups in waste management. It provides data on solid waste
+        generation, collection, treatment, land filled in India and Kerala. Along with this, it
+        includes data about state wise plastic waste generation and sewage generation.
+        Here, the study presents data on solid waste management from reliable open
+        sources such as Central Pollution Control Board, State Pollution Control Board,
+        Economic Review, Indiastat etc.</p>
+    </div>
+    <div class="boxes">
+      <a href="construction.html" class="box" style="color:inherit;text-decoration:none;">
+        <img src="bank_finance.svg" class="image" alt="Social Capital">
+        <p>Social Capital</p>
+      </a>
+      <a href="agriculture.html" class="box" style="color:inherit;text-decoration:none;">
+        <img src="agriculture.svg" class="image" alt="Agriculture">
+        <p>Agriculture</p>
+      </a>
+      <a href="labour.html" class="box" style="color:inherit;text-decoration:none;">
+        <img src="labour.svg" class="image" alt="Labour">
+        <p>Labour</p>
+      </a>
+      <a href="solid waste.html" class="box" style="color:inherit;text-decoration:none;">
+        <img src="mines_minerals.svg" class="image" alt="Solid Waste">
+        <p>Solid Waste</p>
+      </a>
+    </div>
+    <div class="content" id="about">
+      <h2>About Us</h2>
+      <p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for
+        the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College
+        Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and
+        engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary
+        collaboration among faculty members in India and abroad to work towards open data practices and assist
+        interested government departments and industries to convert their data into Linked Open Data (LOD) format.</p>
+    </div>
+    <div class="footer" id="contact">
+      <h2>Contact Us</h2>
+      <div class="footer_boxes">
+        <div class="footer_box">
+          <i class="fa-solid fa-envelope"></i>
+          <p>odlab@gck.ac.in</p>
         </div>
-        <div class="content" id="content">
-            <p><h2>Socio-economic Data</h2></p><br>
-             <p>Performance Linked Enhancement of Academic Studies and Endeavour (PLEASE)
-        project proposes to setup practices and framework for releasing public data for the
-        state of Kerala. The proposed project aims to study and put in place practices to
-        curate public data and convert such data into highly accessible and machine-
-        friendly linked open data formats.</p>
-        <p>Socioeconomic data refers to information that describes the economic and social
-          characteristics of a population, such as income, education level, employment
-          status, occupation, and household composition. It can be collected through a
-          variety of sources, including surveys, census data, and administrative records.
-          Here, focus area of socio-economic data includes: Technology, employment and
-          labour market data, innovation survey in agriculture, data on the social capital
-          network and local governance and data on environmental issues with specific to
-          solid waste management.</p>
-          <p>Technology, employment and labour market data mainly focus on firm level data
-            on technology, employment and wage structure in the unorganized labour market
-            and also the presence of modern technology in the work place. Collecting firm-
-            level data on technology, employment, and wage structure can provide valuable
-            insights into the labor market and help identify trends and challenges that workers
-            and employers face.</p>
-          <p>Analyzing these types of data can help policymakers and researchers identify areas
-            where workers may need additional support or training, as well as areas where
-            firms may need incentives to invest in new technologies or create new jobs. By
-            understanding the dynamics of the labor market and the impact of technology on
-            employment and wages, policymakers can develop policies and programs that
-            support workers and promote economic growth.</p>
-            <p>Innovation survey in agriculture data focus on data about the various technologies
-              invented in the agriculture like introduction of wide variety of seeds, irrigation
-              facilities, tractors, tillers, etc. We mainly included APY statistics (Area, Production
-              and productivity) of various agricultural crops such as rice, wheat, tea, rubber,
-              cardamom, coffee, pepper etc of Kerala & India and district wise statistics of Area,
-              Production, Productivity (APY) of rice, black pepper, cardamom, banana, cashew
-              nut, cotton (lint), and turmeric of Kerala. Along with this, data on raw materials for
-              agriculture such as wide variety of seeds, irrigation facilities, tractors, tillers,
-              rainfall etc. are included in the data portal. Collecting data on innovation in
-              agriculture can provide important insights into the ways in which new technologies
-              and practices are transforming the sector. We are providing agriculture data from
-              reliable open sources such as Economic Review, EPWRF (Economic and Political
-              Weekly Research Foundation), Meteorological Department, DES (Directorate of
-              Economics & Statistics), Indiastat, Rubber Board.</p>
-              <p>By collecting and analyzing this type of data, policymakers and researchers can
-                gain a deeper understanding of the challenges and opportunities facing the
-                agricultural sector. This can help to frame policies and programs that support the
-                adoption of new technologies, improve productivity, and promote sustainable and
-                equitable growth in agriculture.</p>
-                <p>Solid waste management mainly focuses on data on household solid waste
-                  generation, involvement of public- private participation and data on the
-                  employment opportunity and empowerment of economically and socially
-                  disadvantaged groups in waste management. It provides data on solid waste
-                  generation, collection, treatment, land filled in India and Kerala. Along with this, it
-                  includes data about state wise plastic waste generation and sewage generation.
-                  Here, the study presents data on solid waste management from reliable open
-                  sources such as Central Pollution Control Board, State Pollution Control Board,
-                  Economic Review, Indiastat etc.</p>
+        <div class="footer_box">
+          <i class="fa-solid fa-location-dot"></i>
+          <p>Kasaragod, Kerala, India</p>
         </div>
-        <div class="boxes">
-            <div class="box">
-                <a href="construction.html" style="text-decoration: none; color: black;">
-                <img src="bank_finance.svg" class="image">
-                <p>Social Capital</p>
-                </a>
-            </div>
-            <div class="box">
-                <a href="agriculture.html" style="text-decoration: none;color: black;">
-                <img src="agriculture.svg" class="image">
-                <p>Agriculture</p>
-                </a>
-            </div>
-            <div class="box">
-                <a href="labour.html" style="text-decoration: none;color: black;">
-                <img src="labour.svg" class="image">
-                <p>Labour</p>
-                </a>
-            </div>
-            <div class="box">
-                <a href="solid waste.html" style="text-decoration: none;color: black;">
-                <img src="mines_minerals.svg" class="image">
-                <p>Solid Waste</p>
-                </a>
-            </div>
+        <div class="footer_box">
+          <i class="fa-solid fa-phone"></i>
+          <p>+91-9495122006</p>
         </div>
-        <div class="content" id="about">
-             <p><h2>About Us</h2></p><br>
-             <p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for
-          the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College
-          Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and
-          engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary
-          collaboration among faculty members in India and abroad to work towards open data practices and assist
-          interested government departments and industries to convert their data into Linked Open Data (LOD) format.</p>
-        </div>
-        
-        <div class="footer" id="contact">
-        <div class="for_contact_powered">
-            <p><h2><center>Contact Us</center></h2></p><br>
-            <div class="footer_boxes">
-                <div class="footer_box">
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>odlab@gck.ac.in</p>
-                </div>
-                <div class="footer_box">
-                     <i class="fa-solid fa-location-dot"></i>
-                    <p>Kasaragod,Kerala,India</p>
-                </div>
-                <div class="footer_box">
-                     <i class="fa-solid fa-phone"></i>
-                    <p>+91-9495122006</p>
-                </div>
-                 
-            </div>
-            <div class="powered_by">
-                <h3><center>powered by <u>GCK</u></center></h3>
-            </div>
-        </div>
-        </div>
-    </div> 
+      </div>
+      <div class="powered_by">
+        <center>powered by <u>GCK</u></center>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
