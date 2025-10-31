@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Momo+Trust+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     :root {
       /* Blue and clear color palette */
       --bg: #EFF6FF;               /* Light, clear blue background */
@@ -27,6 +28,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+      
     }
     body {
       background: var(--bg);
@@ -60,6 +62,7 @@
       transition: background 0.2s, color 0.2s;
       border: 2px solid grey;
       border-radius: 30px;
+      font-family: 'Barlow', sans-serif;
     }
     nav ul li a:hover {
       background: var(--hover);
@@ -110,6 +113,8 @@
       font-size: 1rem;
       margin-bottom: 13px;
       opacity: 0.98;
+      font-family: 'Barlow', sans-serif;
+      font-size: large;
     }
     .boxes {
       display: flex;
@@ -293,6 +298,7 @@
         gap: 9px;
         padding-top: 7px;
         align-items: center;
+        line-height: 2;
       }
       .name h1 { font-size: 1.3em;}
       .name h2 { font-size: 1em;}
@@ -414,7 +420,7 @@
         </div>
       </div>
       <div class="powered_by">
-        <center>powered by <u>GCK</u></center>
+        <center>powered by <u><a href="https://gck.ac.in/" target="_blank" style="color: #ffffff;">GCK</a></u></center>
       </div>
     </div>
   </div>
