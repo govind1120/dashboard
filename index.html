@@ -109,57 +109,106 @@
 
     /* --- CONTACT SECTION --- */
     .contact-section {
-      background: #f8f9fa;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .contact-section h2 {
-      font-size: 2em;
-      font-weight: 700;
-      color: #222;
-      margin-bottom: 10px;
-    }
-    .contact-desc {
-      color: #555;
-      margin-bottom: 40px;
-      font-size: 1.05em;
-    }
-    p.contact-desc{
-      margin-left: 350px;
-    }
-    .contact-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
-    .contact-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 25px;
-      width: 280px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
-    .contact-card i {
-      font-size: 40px;
-      color: #009688;
-      margin-bottom: 10px;
-    }
-    div.contact-card p.center{
-      margin-left: 60px;
-    }
-    .contact-card.teal {
-      background: linear-gradient(135deg, #009688, #00bfa5);
-      color: #fff;
-    }
-    .contact-card.teal i {
-      color: #fff;
-    }
+  background: #f8f9fa;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+p.center {
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+.contact-desc {
+  color: #555;
+  margin: 0 auto 40px;
+  font-size: 1.05em;
+  max-width: 600px;
+  text-align: center;
+}
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.contact-card i {
+  font-size: 40px;
+  color: #009688;
+  margin-bottom: 10px;
+}
+.contact-card p {
+  white-space: normal;
+  text-align: center;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.contact-card.teal {
+  background: linear-gradient(135deg, #009688, #00bfa5);
+  color: #fff;
+}
+
+.contact-card.teal i {
+  color: #fff;
+}
+
+/*  Responsive Adjustments */
+@media (max-width: 900px) {
+  .contact-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-section {
+    padding: 40px 15px;
+  }
+
+  .contact-section h2 {
+    font-size: 1.8em;
+  }
+
+  .contact-card {
+    width: 100%;
+    max-width: 340px;
+    padding: 20px;
+  }
+
+  .contact-card i {
+    font-size: 36px;
+  }
+
+  .contact-desc {
+    font-size: 1em;
+    margin-bottom: 30px;
+    padding: 0 10px;
+  }
+}
 
     /* --- FOOTER --- */
     .modern-footer {
@@ -340,7 +389,7 @@
                   Economic Review, Indiastat etc.</p><br>
 
     <!-- CATEGORY BOXES -->
-    <div style="margin-top:25px;">
+    <div style="margin-top:25px; text-align:center;" >
       <a href="construction.html" style="text-decoration:none;">
         <div class="category_box gray-1">
           <img src="bank_finance.svg" alt="Social Capital"><br>
@@ -389,7 +438,7 @@
       <div class="contact-card teal">
         <i class="fa fa-map-marker"></i>
         <h4>Address</h4>
-        <p>Government College Kasaragod, Kerala, India</p>
+        <p>Government College Kasaragod,Kerala, India</p>
       </div>
       <div class="contact-card">
         <i class="fa fa-phone"></i>
