@@ -8,19 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F8FAFC;          /* Soft ivory-blue background */
+      --bg: #F8FAFC;
       --surface: #ffffff;
-      --accent: #1E3A8A;      /* Scholarly Blue */
-      --accent2: #0F172A;     /* Deep navy */
-      --muted: #334155;       /* Muted dark gray-blue */
-      --outline: #CBD5E1;     /* Light blue-gray border */
+      --accent: #1E3A8A;
+      --accent2: #0F172A;
+      --muted: #334155;
+      --outline: #CBD5E1;
       --text: #1E293B;
-      --hover: #FFF7E0;       /* Pale gold hover */
-      --footer-bg: #0F172A;   /* Deep scholarly navy */
-      --footer-fg: #E0E7FF;   /* Light blue text */
+      --hover: #FFF7E0;
+      --footer-bg: #0F172A;
+      --footer-fg: #E0E7FF;
       --shadow-box: 0 3px 20px rgba(30,58,138,0.12);
       --shadow-hover: 0 8px 30px rgba(30,58,138,0.2);
-      --gold: #EAB308;        /* Gold accent */
+      --gold: #EAB308;
     }
 
     * {margin:0; padding:0; box-sizing:border-box;}
@@ -44,7 +44,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      height: 70px; /* Consistent navbar height */
+      height: 70px;
     }
 
     .brand {
@@ -110,6 +110,48 @@
       color: var(--gold);
     }
 
+    /* Hamburger menu (mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--surface);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        border-top: 1px solid var(--outline);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav ul li {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      nav ul li a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     /* HEADER */
     header {
       text-align: center;
@@ -124,7 +166,7 @@
       letter-spacing: 1px;
     }
     header h2 {
-      color: var(--gold);
+      color: var(--accent);
       font-weight: 500;
       font-size: 1.1rem;
       margin-top: 10px;
@@ -276,9 +318,6 @@
       color: var(--gold);
       text-decoration: none;
     }
-    .logo-bg {
-      color: var(--accent);
-    }
 
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
@@ -286,7 +325,6 @@
     }
 
     @media (max-width: 768px) {
-      nav ul {flex-direction: column; align-items: center; margin-top: 8px;}
       .boxes {gap: 16px;}
       .box {width: 150px; height: 160px;}
       .content {width: 92%; padding: 24px;}
@@ -304,7 +342,13 @@
         <p>Government College Kasaragod</p>
       </div>
     </div>
-    <ul>
+
+    <!-- Hamburger icon -->
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fa fa-bars"></i>
+    </div>
+
+    <ul id="nav-links">
       <li><a href="#works"><i class="fas fa-cog fa-fw"></i>Our Works</a></li>
       <li><a href="#about"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
@@ -441,5 +485,18 @@
       <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
     </div>
   </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      menuToggle.innerHTML = navLinks.classList.contains('show')
+        ? '<i class="fa fa-times"></i>'
+        : '<i class="fa fa-bars"></i>';
+    });
+  </script>
 </body>
 </html>
