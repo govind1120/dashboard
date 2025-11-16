@@ -1,9 +1,52 @@
 <!DOCTYPE html>
- <html>
-    <head>
-        <title>Page Under Construction</title>
-    </head>
-    <body>
-        <h1>Page Under Construction....!!!!!</h1>
-    </body>
- </html>
+<html>
+<head>
+    <title>Page Under Construction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient( to right,rgb(164, 248, 230,.8),rgb(201, 253, 251,0.5));
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .box {
+            text-align: center;
+            padding: 40px 60px;
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(105, 105, 105, 0.15);
+        }
+
+        h2 {
+            color: #010a07;
+            margin: 0 0 10px;
+        }
+
+        p {
+            color: #444;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Page Under Construction</h2>
+        <p>We're working hard to bring it online soon!</p>
+    </div>
+</body>
+</html>
