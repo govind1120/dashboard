@@ -1,9 +1,156 @@
 <!DOCTYPE html>
- <html>
-    <head>
-        <title>Page Under Construction</title>
-    </head>
-    <body>
-        <h1>Page Under Construction....!!!!!</h1>
-    </body>
- </html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Under Construction</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+        width: 100%;
+        background: white; /* New modern gradient */
+        padding: 16px 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        
+    }
+
+    .nav-logo img {
+        width: 85px; 
+    }
+
+    nav a {
+        color: black;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* Main Content */
+    .container {
+        text-align: center;
+        width: 90%;
+        max-width: 550px;
+        margin-top: 145px; /* space for navbar */
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 12px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .loader {
+        width: 75px;
+        height: 75px;
+        margin: 20px auto;
+    }
+
+    input[type="email"] {
+        width: 80%;
+        padding: 12px;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 82%;
+        padding: 12px;
+        background:  #64748B;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background: #004bd1;
+    }
+
+    /* Footer */
+    footer {
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
+        padding: 18px;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 15px 15px 0 0;
+        
+    }
+</style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-logo">
+        <img src="Open.png" alt="Logo">
+    </div>
+    <a href="index.html">Home</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h1>We Are Building Something Awesome!</h1>
+    <p>Our website is under development. Stay connected with us!</p>
+   
+
+    <!-- Loader GIF -->
+    <img src="https://i.gifer.com/ZZ5H.gif" class="loader" alt="Loading...">
+    <p><p>Get ready to experience a next-gen DataLab platform.</p></p>
+    <input type="email" placeholder="Enter your email">
+    <button>Notify Me</button>
+
+    <p style="margin-top:10px; font-size:14px;">For inquiries: <b>datalab@gmail.com</b></p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+     © 2025 Open Data Lab | Powered by 
+      <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+</footer>
+
+</body>
+</html>
