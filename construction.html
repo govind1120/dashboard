@@ -3,193 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Autowide:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <title>Under Construction</title>
 
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-    body {
+    * {
         margin: 0;
-        font-family: "Audiowide", sans-serif;
-        background: linear-gradient(135deg,#0f172a,#1e293b,#334155);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 20px;
-    }
-    
-    .container {
-        max-width: 500px;
-        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .logo img {
-        width: 120px;
-        margin-bottom: 15px;
+    body {
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+        width: 100%;
+        background: white; /* New modern gradient */
+        padding: 16px 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        
+    }
+
+    .nav-logo img {
+        width: 85px; 
+    }
+
+    nav a {
+        color: black;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* Main Content */
+    .container {
+        text-align: center;
+        width: 90%;
+        max-width: 550px;
+        margin-top: 145px; /* space for navbar */
     }
 
     h1 {
-        font-size: 32px;
-        margin-bottom: 10px;
+        font-size: 28px;
         font-weight: 600;
+        color: #222;
+        margin-bottom: 12px;
     }
 
     p {
-        font-size: 15px;
-        opacity: 0.8;
+        font-size: 16px;
+        color: #555;
         margin-bottom: 20px;
     }
-    .loader-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-}
 
-.loader {
-    width: 80px;    /* change size as needed */
-    height: 80px;
-}
-
-    #countdown {
-        display: flex;
-        justify-content: space-between;
-        margin: 25px 0;
-    }
-
-    .time-box {
-        background: rgba(255,255,255,0.12);
-        padding: 15px;
-        border-radius: 12px;
-        width: 70px;
-        backdrop-filter: blur(8px);
-    }
-
-    .time-box span {
-        display: block;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    /* Email form */
-    .notify-box {
-        margin-top: 25px;
+    .loader {
+        width: 75px;
+        height: 75px;
+        margin: 20px auto;
     }
 
     input[type="email"] {
-        width: 90%;
+        width: 80%;
         padding: 12px;
-        border: none;
-        border-radius: 10px;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
         margin-bottom: 10px;
-        outline: none;
     }
 
     button {
-        margin-top: 25px;
-        padding: 12px 25px;
+        width: 82%;
+        padding: 12px;
+        background:  #64748B;
+        color: white;
         border: none;
-        border-radius: 10px;
-        background: #38bdf8;
-        color: #000;
-        font-weight: bold;
+        border-radius: 6px;
         cursor: pointer;
+        transition: 0.3s;
+        font-size: 16px;
     }
 
     button:hover {
-        background: #0ea5e9;
+        background: #004bd1;
     }
 
+    /* Footer */
     footer {
-        margin-top: 15px;
-        font-size: 14px;
-        opacity: 0.8;
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
+        padding: 18px;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 15px 15px 0 0;
+        
     }
 </style>
+
 </head>
-
 <body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-logo">
+        <img src="Open.png" alt="Logo">
+    </div>
+    <a href="index.html">Home</a>
+</nav>
+
+<!-- MAIN CONTENT -->
 <div class="container">
-    
-    <div class="logo">
-        <img src="open.png" alt="Logo">
-    </div>
+    <h1>We Are Building Something Awesome!</h1>
+    <p>Our website is under development. Stay connected with us!</p>
+   
 
-    <h1>We're Coming Soon</h1>
-    <p>Our website is under construction.</p>
-    <p>We’re crafting a next-gen DataLab platform for you. Launching shortly.</p>
-    <!-- Loading Image -->
-<div class="loader-container">
+    <!-- Loader GIF -->
     <img src="https://i.gifer.com/ZZ5H.gif" class="loader" alt="Loading...">
+    <p><p>Get ready to experience a next-gen DataLab platform.</p></p>
+    <input type="email" placeholder="Enter your email">
+    <button>Notify Me</button>
+
+    <p style="margin-top:10px; font-size:14px;">For inquiries: <b>datalab@gmail.com</b></p>
 </div>
 
-    <!-- COUNTDOWN -->
-    <div id="countdown">
-        <div class="time-box"><span id="days">00</span>Days</div>
-        <div class="time-box"><span id="hours">00</span>Hours</div>
-        <div class="time-box"><span id="minutes">00</span>Min</div>
-        <div class="time-box"><span id="seconds">00</span>Sec</div>
-    </div>
-
-    <!-- USER EMAIL FORM -->
-    <div class="notify-box">
-        <input type="email" id="userEmail" placeholder="Enter your email for updates">
-        <button onclick="notifyUser()">Notify Me</button>
-        <p id="message" style="margin-top:10px;"></p>
-    </div>
-
-    <footer>
-        Contact us:<b> opendatalab@gmail.com</b>
-    </footer>
-</div>
-<script>
-    // COUNTDOWN TIMER -------------------------
-    const targetDate = new Date("2025-11-30 00:00:00").getTime();
-    const timer = setInterval(function() {
-        let now = new Date().getTime();
-        let diff = targetDate - now;
-
-        if (diff <= 0) {
-            clearInterval(timer);
-            document.getElementById("countdown").innerHTML = "We Are Live!";
-            return;
-        }
-
-        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerText = days;
-        document.getElementById("hours").innerText = hours;
-        document.getElementById("minutes").innerText = minutes;
-        document.getElementById("seconds").innerText = seconds;
-    }, 1000);
-
-    // EMAIL SAVE FUNCTION ----------------------
-    function notifyUser() {
-        const email = document.getElementById("userEmail").value;
-        const message = document.getElementById("message");
-
-        if (email === "") {
-            message.style.color = "red";
-            message.innerText = "Please enter a valid email.";
-            return;
-        }
-
-        // Save to localStorage (temporary)
-        let saved = JSON.parse(localStorage.getItem("notifyEmails")) || [];
-        saved.push(email);
-        localStorage.setItem("notifyEmails", JSON.stringify(saved));
-
-        message.style.color = "#38f9b8";
-        message.innerText = "Thank you! You will be notified 🎉";
-        document.getElementById("userEmail").value = "";
-    }
-</script>
+<!-- FOOTER -->
+<footer>
+     © 2025 Open Data Lab | Powered by 
+      <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+</footer>
 
 </body>
 </html>
