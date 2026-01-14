@@ -1,623 +1,772 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Agriculture Data - Open Data Lab | GCK</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root {
---bg: #F8FAFC;
---surface: #ffffff;
---accent: #1E3A8A;
---accent2: #0F172A;
---muted: #334155;
---outline: #CBD5E1;
---text: #1E293B;
---hover: #FFF7E0;
---footer-bg: #0F172A;
---footer-fg: #E0E7FF;
---shadow-box: 0 3px 20px rgba(30,58,138,0.12);
---shadow-hover: 0 8px 30px rgba(30,58,138,0.2);
---gold: #EAB308;
-}
-* {margin:0; padding:0; box-sizing:border-box;}
-body {
-font-family: 'Barlow', sans-serif;
-color: var(--text);
-background: var(--bg);
-line-height: 1.7;
-overflow-x: hidden;
-}
-/* NAVBAR */
-nav {
-background: var(--surface);
-box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-padding: 10px 36px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 2px solid var(--outline);
-position: sticky;
-top: 0;
-z-index: 50;
-height: 70px;
-}
-.brand {
-display: flex;
-align-items: center;
-gap: 12px;
-}
-.brand img {
-height: 45px;
-width: auto;
-vertical-align: middle;
-border-radius: 8px;
-}
-.brand div {
-display: flex;
-flex-direction: column;
-justify-content: center;
-line-height: 1.2;
-}
-.brand h4 {
-font-size: 1.2rem;
-font-weight: 700;
-color: var(--accent);
-margin: 0;
-}
-.brand p {
-font-size: 0.8rem;
-color: #64748B;
-margin: 0;
-}
-nav ul {
-list-style: none;
-display: flex;
-align-items: center;
-gap: 24px;
-margin: 0;
-padding: 0;
-}
-nav ul li a {
-text-decoration: none;
-color: var(--muted);
-font-weight: 600;
-transition: 0.2s;
-padding: 6px 14px;
-border-radius: 8px;
-display: flex;
-align-items: center;
-}
-nav ul li a i {
-margin-right: 6px;
-font-size: 0.9rem;
-position: relative;
-top: 1px;
-}
-nav ul li a:hover, nav ul li a.active {
-background: var(--hover);
-color: var(--gold);
-}
-nav ul li a.active i {
-color: var(--gold);
-}
-/* Hamburger menu (mobile) */
-.menu-toggle {
-display: none;
-font-size: 1.6rem;
-color: var(--accent);
-cursor: pointer;
-}
-@media (max-width: 768px) {
-.menu-toggle {
-display: block;
-}
-nav ul {
-display: none;
-flex-direction: column;
-width: 100%;
-background: var(--surface);
-position: absolute;
-top: 70px;
-left: 0;
-border-top: 1px solid var(--outline);
-box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-transition: all 0.3s ease-in-out;
-}
-nav ul.show {
-display: flex;
-}
-nav ul li {
-text-align: center;
-width: 100%;
-padding: 10px 0;
-}
-nav ul li a {
-width: 100%;
-justify-content: center;
-}
-}
-/* HEADER */
-header {
-text-align: center;
-padding: 60px 20px 40px;
-background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
-border-bottom: 2px solid var(--outline);
-}
-header h1 {
-font-size: 2.4rem;
-color: var(--accent2);
-font-weight: 800;
-letter-spacing: 1px;
-margin-bottom: 10px;
-}
-header h2 {
-color: var(--accent);
-font-weight: 500;
-font-size: 1.1rem;
-margin-top: 10px;
-}
-/* MAIN CONTENT */
-.content {
-max-width: 1400px;
-width: 95%;
-margin: 40px auto;
-background: var(--surface);
-border-radius: 16px;
-padding: 40px;
-box-shadow: var(--shadow-box);
-border-left: 5px solid var(--accent);
-animation: fadeIn 0.8s ease-in-out;
-}
-.content h3 {
-color: var(--accent2);
-font-size: 1.7rem;
-font-weight: 700;
-text-align: left;
-margin-bottom: 20px;
-padding-left: 8px;
-border-left: 4px solid var(--gold);
-padding-bottom: 12px;
-}
-.content p {
-color: var(--muted);
-margin-bottom: 16px;
-font-size: 1.05rem;
-text-align: justify;
-line-height: 1.75;
-}
-/* DATA TABLE */
-.data-table {
-width: 100%;
-border-collapse: collapse;
-margin: 30px 0;
-background: var(--surface);
-border-radius: 12px;
-overflow: hidden;
-box-shadow: var(--shadow-box);
-}
-.data-table th {
-background: linear-gradient(135deg, var(--accent), var(--accent2));
-color: white;
-padding: 16px 12px;
-text-align: left;
-font-weight: 600;
-font-size: 0.95rem;
-position: sticky;
-top: 0;
-z-index: 10;
-}
-.data-table td {
-padding: 14px 12px;
-border-bottom: 1px solid var(--outline);
-vertical-align: top;
-}
-.data-table tr:nth-child(even) {
-background-color: #F8FAFC;
-}
-.data-table tr:hover {
-background: var(--hover);
-transform: scale(1.002);
-transition: all 0.2s ease;
-}
-.data-table a {
-color: var(--accent);
-text-decoration: none;
-font-weight: 500;
-transition: 0.2s;
-}
-.data-table a:hover {
-color: var(--gold);
-text-decoration: underline;
-}
-.data-table .download-icon {
-font-size: 1.3rem;
-color: var(--accent);
-transition: 0.2s;
-display: inline-block;
-width: 40px;
-height: 40px;
-line-height: 40px;
-text-align: center;
-border-radius: 8px;
-background: rgba(30,58,138,0.1);
-}
-.data-table .download-icon:hover {
-color: var(--gold);
-background: var(--hover);
-transform: scale(1.1);
-}
-/* RESPONSIVE TABLE */
-@media (max-width: 768px) {
-.data-table {
-font-size: 0.9rem;
-}
-.data-table th, .data-table td {
-padding: 10px 8px;
-}
-.data-table .download-icon {
-width: 35px;
-height: 35px;
-line-height: 35px;
-font-size: 1.1rem;
-}
-}
-/* ABOUT SECTION */
-.about-section {
-margin-top: 60px;
-}
-.about-section h4 {
-color: var(--accent2);
-font-size: 1.5rem;
-font-weight: 700;
-margin-bottom: 20px;
-}
-/* CONTACT SECTION */
-.contact-section {
-background: var(--footer-bg);
-color: var(--footer-fg);
-padding: 70px 20px;
-border-top-left-radius: 40px;
-border-top-right-radius: 40px;
-text-align: center;
-box-shadow: 0 -8px 30px rgba(0,0,0,0.08);
-margin-top: 60px;
-}
-.contact-section h2 {
-font-size: 1.7rem;
-margin-bottom: 25px;
-font-weight: 700;
-color: var(--gold);
-}
-.contact-grid {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 28px;
-margin-top: 20px;
-}
-.contact-card {
-background: var(--surface);
-color: var(--accent2);
-border-radius: 14px;
-padding: 24px;
-width: 260px;
-box-shadow: var(--shadow-box);
-transition: transform 0.3s, box-shadow 0.3s;
-}
-.contact-card:hover {
-transform: translateY(-6px);
-box-shadow: var(--shadow-hover);
-}
-.contact-card i {
-font-size: 2rem;
-color: var(--accent);
-margin-bottom: 10px;
-display: block;
-}
-.contact-card h4 {
-font-size: 1.1rem;
-margin-bottom: 6px;
-color: var(--accent2);
-}
-.contact-card p {
-margin: 0;
-color: var(--muted);
-}
-/* FOOTER */
-footer {
-background: #0A0A0A;
-color: #f6faf8;
-text-align: center;
-padding: 40px 20px 25px;
-}
-.footer-links {
-margin-bottom: 20px;
-}
-.footer-links a {
-color: #f6f8f7;
-text-decoration: none;
-margin: 0 10px;
-font-weight: 500;
-}
-.footer-links a:hover {
-color: var(--gold);
-}
-.social-icons {
-margin-bottom: 15px;
-}
-.social-icons a {
-color: #fbfdfc;
-margin: 0 10px;
-font-size: 1.3rem;
-transition: color 0.3s;
-}
-.social-icons a:hover {
-color: var(--gold);
-}
-.bottom-bar {
-font-size: 0.9rem;
-color: #f7faf9;
-}
-.bottom-bar a {
-color: var(--gold);
-text-decoration: none;
-}
-@keyframes fadeIn {
-from {opacity: 0; transform: translateY(20px);}
-to {opacity: 1; transform: translateY(0);}
-}
-@media (max-width: 768px) {
-.content {width: 95%; padding: 24px; margin: 20px auto;}
-header h1 {font-size: 1.8rem;}
-header h2 {font-size: 1rem;}
-.contact-grid {gap: 20px;}
-.contact-card {width: 100%; max-width: 300px;}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agriculture Data - Open Data Lab | GCK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #ffffff;
+      --accent: #1E3A8A;
+      --accent2: #0F172A;
+      --muted: #334155;
+      --outline: #CBD5E1;
+      --text: #1E293B;
+      --hover: #FFF7E0;
+      --footer-bg: #0F172A;
+      --footer-fg: #E0E7FF;
+      --shadow-box: 0 3px 20px rgba(30, 58, 138, 0.12);
+      --shadow-hover: 0 8px 30px rgba(30, 58, 138, 0.2);
+      --gold: #EAB308;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      background: var(--surface);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      padding: 10px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--outline);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      height: 45px;
+      width: auto;
+      vertical-align: middle;
+      border-radius: 8px;
+    }
+
+    .brand div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.2;
+    }
+
+    .brand h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .brand p {
+      font-size: 0.8rem;
+      color: #64748B;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul li a i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+      position: relative;
+      top: 1px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--hover);
+      color: var(--gold);
+    }
+
+    nav ul li a.active i {
+      color: var(--gold);
+    }
+
+    /* Hamburger menu (mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--surface);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        border-top: 1px solid var(--outline);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav ul li {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      nav ul li a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
+      border-bottom: 2px solid var(--outline);
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      color: var(--accent2);
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    header h2 {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      max-width: 1000px;
+      width: 90%;
+      margin: 40px auto;
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow-box);
+      border-left: 5px solid var(--accent);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .content h3 {
+      color: var(--accent2);
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      padding-left: 0;
+      border-left: none;
+      padding-bottom: 12px;
+    }
+
+    .content p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+      text-align: justify;
+      line-height: 1.75;
+    }
+
+    /* DATA TABLE */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-box);
+    }
+
+    .data-table th {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      padding: 16px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .data-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--outline);
+      vertical-align: top;
+    }
+
+    .data-table tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+
+    .data-table tr:hover {
+      background: var(--hover);
+      transform: scale(1.002);
+      transition: all 0.2s ease;
+    }
+
+    .data-table a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .data-table a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .data-table .download-icon {
+      font-size: 1.3rem;
+      color: var(--accent);
+      transition: 0.2s;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 8px;
+      background: rgba(30, 58, 138, 0.1);
+    }
+
+    .data-table .download-icon:hover {
+      color: var(--gold);
+      background: var(--hover);
+      transform: scale(1.1);
+    }
+
+    /* RESPONSIVE TABLE */
+    @media (max-width: 768px) {
+      .data-table {
+        font-size: 0.9rem;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 10px 8px;
+      }
+
+      .data-table .download-icon {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.1rem;
+      }
+    }
+
+    /* ABOUT SECTION */
+    .about-section {
+      margin-top: 0; /* Removed 60px gap here */
+    }
+
+    .about-section h4 {
+      color: var(--accent2);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      background: var(--footer-bg);
+      color: var(--footer-fg);
+      padding: 70px 20px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      text-align: center;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+      margin-top: 60px;
+    }
+
+    .contact-section h2 {
+      font-size: 1.7rem;
+      margin-bottom: 25px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      color: var(--accent2);
+      border-radius: 14px;
+      padding: 24px;
+      width: 260px;
+      box-shadow: var(--shadow-box);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .contact-card i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .contact-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: var(--accent2);
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0A0A0A;
+      color: #f6faf8;
+      text-align: center;
+      padding: 40px 20px 25px;
+    }
+
+    .footer-links {
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: #f6f8f7;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .social-icons {
+      margin-bottom: 15px;
+    }
+
+    .social-icons a {
+      color: #fbfdfc;
+      margin: 0 10px;
+      font-size: 1.3rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--gold);
+    }
+
+    .bottom-bar {
+      font-size: 0.9rem;
+      color: #f7faf9;
+    }
+
+    .bottom-bar a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        width: 95%;
+        padding: 24px;
+        margin: 20px auto;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      header h2 {
+        font-size: 1rem;
+      }
+
+      .contact-grid {
+        gap: 20px;
+      }
+
+      .contact-card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<!-- NAVBAR -->
-<nav>
-<div class="brand">
-<img src="Open.png" alt="Open Data Lab Logo">
-<div>
-<h4>Open Data Lab</h4>
-<p>Government College Kasaragod</p>
-</div>
-</div>
-<!-- Hamburger icon -->
-<div class="menu-toggle" id="menu-toggle">
-<i class="fa fa-bars"></i>
-</div>
-<ul id="nav-links">
-<li><a href="index.html"><i class="fas fa-home fa-fw"></i>Home</a></li>
-<li><a href="index.html#works" class="active"><i class="fas fa-cog fa-fw"></i>Agriculture</a></li>
-<li><a href="index.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
-<li><a href="index.html#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
-</ul>
-</nav>
+  <nav>
+    <div class="brand">
+      <img src="Open.png" alt="Open Data Lab Logo">
+      <div>
+        <h4>Open Data Lab</h4>
+        <p>Government College Kasaragod</p>
+      </div>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fa fa-bars"></i>
+    </div>
+    <ul id="nav-links">
+      <li><a href="index.html"><i class="fas fa-home fa-fw"></i>Home</a></li>
+      <li><a href="agriculture.html#agriculture" class="active"><i class="fas fa-cog fa-fw"></i>Agriculture</a></li>
+      <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li><a href="agriculture.html#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HEADER -->
-<header>
-<h1>GCK Open Data Lab</h1>
-<h2>Agriculture Data Portal - APY Statistics</h2>
-</header>
+  <header>
+    <h1>GCK Open Data Lab</h1>
+    <h2>Agriculture Data Portal - APY Statistics</h2>
+  </header>
 
-<!-- MAIN CONTENT -->
-<section class="content">
-<h3>Agriculture Datasets</h3>
-<p>Agriculture is the backbone of the world's food supply, providing the food and resources needed to support a
-   growing population. Agriculture has evolved over the years, from traditional subsistence farming to modern
-    commercial agriculture that utilizes advanced technologies and methods such as seeds, fertilizers, pesticides
-     and machinery to increase crop yields and improve efficiency. In addition to food production, agriculture also
+  <section id="agriculture" class="content">
+    <h3>Agriculture Datasets</h3>
+    <p>Agriculture is the backbone of the world's food supply, providing the food and resources needed to support a
+      growing population. Agriculture has evolved over the years, from traditional subsistence farming to modern
+      commercial agriculture that utilizes advanced technologies and methods such as seeds, fertilizers, pesticides
+      and machinery to increase crop yields and improve efficiency. In addition to food production, agriculture also
       plays an important role in the economy, providing employment and income for millions of people worldwide.</p>
 
-<p>Access to accurate and reliable agricultural data is essential for making informed decisions and policies 
-  related to food security, rural development, and sustainable agriculture. Through the Performance Linked 
-  Enhancement of Academic Studies and Endeavour (PLEASE) project, we provide APY data (Area, Production and
-   Productivity) of various agricultural crops such as rice, wheat, tea, rubber, cardamom, coffee, pepper etc.
-    In addition to providing APY data, it is also
-    important to consider other factors that impact agricultural production, such as
-    climate change, soil health, water availability, and pest and disease management.
-    By analyzing and understanding these factors, policymakers and farmers can adopt
-     sustainable and climate-resilient agricultural practices that can improve yields,
-     reduce production costs, and enhance environmental sustainability. Overall, it is
-     encouraging to see efforts to gather and share agricultural data to support evidence-
-    based decision-making and promote sustainable agriculture. By analyzing APY
-     data for different crops, stakeholders can also identify areas where improvements
-     in technology, irrigation, fertilizers, and pest control could help to increase yields
-     and improve productivity. This information can be particularly useful for
-    smallholder farmers who often face challenges in accessing the resources needed to
-     optimize crop production.</p>
-     <p>Moreover, APY data can help to identify potential food security challenges and
-        guide interventions aimed at improving agricultural resilience and reducing
-          vulnerability to shocks such as climate change, natural disasters, or market
-         fluctuations. Overall, the provision of APY data for various agricultural crops is a
-         valuable contribution to the agricultural sector, and can help to support sustainable
-         development and economic growth.</p>
+    <p>Access to accurate and reliable agricultural data is essential for making informed decisions and policies
+      related to food security, rural development, and sustainable agriculture. Through the Performance Linked
+      Enhancement of Academic Studies and Endeavour (PLEASE) project, we provide APY data (Area, Production and
+      Productivity) of various agricultural crops such as rice, wheat, tea, rubber, cardamom, coffee, pepper etc.
+      In addition to providing APY data, it is also
+      important to consider other factors that impact agricultural production, such as
+      climate change, soil health, water availability, and pest and disease management.
+      By analyzing and understanding these factors, policymakers and farmers can adopt
+      sustainable and climate-resilient agricultural practices that can improve yields,
+      reduce production costs, and enhance environmental sustainability. Overall, it is
+      encouraging to see efforts to gather and share agricultural data to support evidence-
+      based decision-making and promote sustainable agriculture. By analyzing APY
+      data for different crops, stakeholders can also identify areas where improvements
+      in technology, irrigation, fertilizers, and pest control could help to increase yields
+      and improve productivity. This information can be particularly useful for
+      smallholder farmers who often face challenges in accessing the resources needed to
+      optimize crop production.</p>
+    <p>Moreover, APY data can help to identify potential food security challenges and
+      guide interventions aimed at improving agricultural resilience and reducing
+      vulnerability to shocks such as climate change, natural disasters, or market
+      fluctuations. Overall, the provision of APY data for various agricultural crops is a
+      valuable contribution to the agricultural sector, and can help to support sustainable
+      development and economic growth.</p>
 
-<table class="data-table">
-<thead>
-<tr>
-<th>Dataset</th>
-<th>View Data</th>
-<th>Download</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</td>
-<td><a href="agriculture 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 1.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production and Productivity of Cashew in Kerala and India (1998-99 to 2020-21)</td>
-<td><a href="agriculture 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 2.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
-<td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Production and Productivity of Principal Crops in Kerala (1991-92 to 2000-01)</td>
-<td><a href="agriculture 51.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 51.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Production and Productivity of Principal Crops in Kerala (2001-02 to 2013-14)</td>
-<td><a href="agriculture 52.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 52.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Production and Productivity of Principal Crops in Kerala (2013-14 to 2021-22)</td>
-<td><a href="agriculture 53.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 53.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Rice in India (1950-2022)</td>
-<td><a href="agriculture 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 4.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield of Wheat in India (1950-2022)</td>
-<td><a href="agriculture 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 5.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Cereals in India (1950-2022)</td>
-<td><a href="agriculture 6.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 6.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Foodgrains in India (1950-2022)</td>
-<td><a href="agriculture 7.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 7.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Arecanut in India (1964-2020)</td>
-<td><a href="agriculture 8.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 8.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Cashew in India (1962-2020)</td>
-<td><a href="agriculture 9.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 9.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Coffee in India (1950-2020)</td>
-<td><a href="agriculture 10.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 10.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Coconut in India (1950-2019)</td>
-<td><a href="agriculture 11.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 11.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Rubber in India (1950-2020)</td>
-<td><a href="agriculture 12.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 12.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>Area, Production, Yield Statistics of Tea in India (1950-2019)</td>
-<td><a href="agriculture 13.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 13.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>State-wise Area Statistics of Rice in India (1950-21)</td>
-<td><a href="agriculture 14.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 14.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>State-wise Production Statistics of Rice in India (1950-21)</td>
-<td><a href="agriculture 15.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 15.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<tr>
-<td>State-wise Yield Statistics of Rice in India (1950-21)</td>
-<td><a href="agriculture 16.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-<td><center><a href="agriculture 16.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center></td>
-</tr>
-<!-- Continue with all remaining rows following the same pattern -->
-</tbody>
-</table>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>View Data</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</td>
+          <td><a href="agriculture 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 1.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production and Productivity of Cashew in Kerala and India (1998-99 to 2020-21)</td>
+          <td><a href="agriculture 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 2.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
+          <td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (1991-92 to 2000-01)</td>
+          <td><a href="agriculture 51.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 51.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2001-02 to 2013-14)</td>
+          <td><a href="agriculture 52.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 52.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2013-14 to 2021-22)</td>
+          <td><a href="agriculture 53.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 53.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rice in India (1950-2022)</td>
+          <td><a href="agriculture 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 4.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield of Wheat in India (1950-2022)</td>
+          <td><a href="agriculture 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 5.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cereals in India (1950-2022)</td>
+          <td><a href="agriculture 6.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 6.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Foodgrains in India (1950-2022)</td>
+          <td><a href="agriculture 7.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 7.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Arecanut in India (1964-2020)</td>
+          <td><a href="agriculture 8.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 8.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cashew in India (1962-2020)</td>
+          <td><a href="agriculture 9.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 9.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coffee in India (1950-2020)</td>
+          <td><a href="agriculture 10.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 10.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coconut in India (1950-2019)</td>
+          <td><a href="agriculture 11.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 11.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rubber in India (1950-2020)</td>
+          <td><a href="agriculture 12.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 12.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Tea in India (1950-2019)</td>
+          <td><a href="agriculture 13.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 13.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Area Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 14.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 14.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Production Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 15.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 15.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Yield Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 16.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 16.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-<div class="about-section">
-<h4>About Us</h4>
-<p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary collaboration among faculty members in India and abroad to work towards open data practices and assist interested government departments and industries to convert their data into Linked Open Data (LOD) format.</p>
-</div>
-</section>
+  <section id="about" class="content">
+    <div class="about-section">
+      <h4>About Us</h4>
+      <p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for
+        the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College
+        Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and
+        engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary
+        collaboration among faculty members in India and abroad to work towards open data practices and assist
+        interested government departments and industries to convert their data into Linked Open Data (LOD) format.</p>
+    </div>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-<h2>Contact Us</h2>
-<div class="contact-grid">
-<div class="contact-card">
-<i class="fa fa-envelope"></i>
-<h4>Email</h4>
-<p>odlab@gck.ac.in</p>
-</div>
-<div class="contact-card">
-<i class="fa fa-map-marker-alt"></i>
-<h4>Address</h4>
-<p>Government College Kasaragod, Kerala, India</p>
-</div>
-<div class="contact-card">
-<i class="fa fa-phone"></i>
-<h4>Phone</h4>
-<p>+91-9495122006</p>
-</div>
-</div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-<div class="footer-links">
-<a href="index.html#works">Our Works</a> |
-<a href="index.html#about">About</a> |
-<a href="index.html#contact">Contact</a>
-</div>
-<div class="social-icons">
-<a href="#"><i class="fa-brands fa-facebook"></i></a>
-<a href="#"><i class="fa-brands fa-twitter"></i></a>
-<a href="#"><i class="fa-brands fa-linkedin"></i></a>
-<a href="#"><i class="fa-solid fa-globe"></i></a>
-</div>
-<div class="bottom-bar">
-© 2025 Open Data Lab | Powered by
-<a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
-</div>
-</footer>
+  <section id="contact" class="contact-section">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fa fa-envelope"></i>
+        <h4>Email</h4>
+        <p>odlab@gck.ac.in</p>
+      </div>
+      <div class="contact-card">
+        <i class="fa fa-map-marker-alt"></i>
+        <h4>Address</h4>
+        <p>Government College Kasaragod, Kerala, India</p>
+      </div>
+      <div class="contact-card">
+        <i class="fa fa-phone"></i>
+        <h4>Phone</h4>
+        <p>+91-9495122006</p>
+      </div>
+    </div>
+  </section>
 
-<!-- SCRIPT -->
-<script>
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
-menuToggle.addEventListener('click', () => {
-navLinks.classList.toggle('show');
-menuToggle.innerHTML = navLinks.classList.contains('show')
-? '<i class="fa fa-times"></i>'
-: '<i class="fa fa-bars"></i>';
-});
+  <footer>
+    <div class="footer-links">
+      <a href="index.html#works">Our Works</a> |
+      <a href="index.html#about">About</a> |
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#"><i class="fa-solid fa-globe"></i></a>
+    </div>
+    <div class="bottom-bar">
+      © 2025 Open Data Lab | Powered by
+      <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+    </div>
+  </footer>
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-const target = document.querySelector(this.getAttribute('href'));
-if (target) {
-target.scrollIntoView({
-behavior: 'smooth',
-block: 'start'
-});
-}
-});
-});
-</script>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      menuToggle.innerHTML = navLinks.classList.contains('show')
+        ? '<i class="fa fa-times"></i>'
+        : '<i class="fa fa-bars"></i>';
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
