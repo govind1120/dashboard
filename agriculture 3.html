@@ -66,10 +66,68 @@
     .brand img {
       height: 45px;
       width: auto;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>agriculture3</title>
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- XLSX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" crossorigin="anonymous"></script>
+
+  <!-- MATCHING THEME -->
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #ffffff;
+      --accent: #1E3A8A;
+      --accent2: #0F172A;
+      --muted: #334155;
+      --outline: #CBD5E1;
+      --hover: #FFF7E0;
+      --gold: #EAB308;
+      --shadow: 0 3px 20px rgba(30,58,138,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--accent2);
+      line-height: 1.7;
+    }
+
+    /* NAVBAR */
+    nav {
+      background: var(--surface);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      padding: 10px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--outline);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      height: 45px;
       border-radius: 8px;
     }
 
     .brand h4 {
+<<<<<<< HEAD
       font-family: 'Barlow', sans-serif;
       font-weight: 700;
       font-size: 1.2rem;
@@ -82,18 +140,29 @@
       flex-direction: column;
       justify-content: center;
       line-height: 1.2;
+=======
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+>>>>>>> 1500274 (your commit message here)
     }
 
     .brand p {
       font-size: 0.8rem;
       color: #64748B;
+<<<<<<< HEAD
       margin: 0;
+=======
+>>>>>>> 1500274 (your commit message here)
     }
 
     nav ul {
       list-style: none;
       display: flex;
+<<<<<<< HEAD
       align-items: center;
+=======
+>>>>>>> 1500274 (your commit message here)
       gap: 24px;
     }
 
@@ -101,6 +170,7 @@
       text-decoration: none;
       color: var(--muted);
       font-weight: 600;
+<<<<<<< HEAD
       transition: 0.2s;
       padding: 6px 14px;
       border-radius: 8px;
@@ -132,6 +202,13 @@
         align-items: center;
       }
       
+=======
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+>>>>>>> 1500274 (your commit message here)
     nav ul li a:hover,
     nav ul li a.active {
       background: var(--hover);
@@ -147,6 +224,7 @@
     }
 
     header h1 {
+<<<<<<< HEAD
       font-size: 2.4rem;
       color: var(--accent2);
       font-weight: 800;
@@ -163,10 +241,25 @@
     /* MAIN CONTENT + ANIMATION */
     .content {
       max-width: 1000px;
+=======
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+
+    header h2 {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1200px;
+>>>>>>> 1500274 (your commit message here)
       margin: 40px auto;
       background: var(--surface);
       padding: 32px;
       border-radius: 16px;
+<<<<<<< HEAD
       border-left: 5px solid var(--accent);
       box-shadow: var(--shadow-box);
       animation: fadeIn 0.8s ease-in-out;
@@ -182,6 +275,19 @@
     .data-table,
     table {
       width: 100% !important;
+=======
+      box-shadow: var(--shadow);
+    }
+
+    h4 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: var(--accent2);
+    }
+     /* DATA TABLE */
+    .data-table {
+      width: 100%;
+>>>>>>> 1500274 (your commit message here)
       border-collapse: collapse;
       margin: 30px 0;
       background: var(--surface);
@@ -190,12 +296,17 @@
       box-shadow: var(--shadow-box);
     }
 
+<<<<<<< HEAD
     th {
+=======
+    .data-table th {
+>>>>>>> 1500274 (your commit message here)
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: white;
       padding: 16px 12px;
       text-align: left;
       font-weight: 600;
+<<<<<<< HEAD
     }
 
     td {
@@ -215,6 +326,43 @@
 
     /* DOWNLOAD ICON (Circular style) */
     .download-icon {
+=======
+      font-size: 0.95rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .data-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--outline);
+      vertical-align: top;
+    }
+
+    .data-table tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+
+    .data-table tr:hover {
+      background: var(--hover);
+      transform: scale(1.002);
+      transition: all 0.2s ease;
+    }
+
+    .data-table a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .data-table a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .data-table .download-icon {
+>>>>>>> 1500274 (your commit message here)
       font-size: 1.3rem;
       color: var(--accent);
       transition: 0.2s;
@@ -227,12 +375,17 @@
       background: rgba(30, 58, 138, 0.1);
     }
 
+<<<<<<< HEAD
     .download-icon:hover {
+=======
+    .data-table .download-icon:hover {
+>>>>>>> 1500274 (your commit message here)
       color: var(--gold);
       background: var(--hover);
       transform: scale(1.1);
     }
 
+<<<<<<< HEAD
     /* ANIMATION DEFINITION */
     @keyframes fadeIn {
       from {
@@ -284,6 +437,60 @@
       color: var(--accent);
       margin-bottom: 10px;
       display: block;
+=======
+    /* RESPONSIVE TABLE */
+    @media (max-width: 768px) {
+      .data-table {
+        font-size: 0.9rem;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 10px 8px;
+      }
+
+      .data-table .download-icon {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.1rem;
+      }
+    }
+
+
+    /* EXCEL TABLE STYLING */
+    table {
+      width: 100% !important;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid var(--outline);
+      padding: 10px;
+    }
+
+    tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    tr:hover {
+      background: var(--hover);
+    }
+
+    p {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+>>>>>>> 1500274 (your commit message here)
     }
 
     /* FOOTER */
@@ -291,6 +498,7 @@
       background: #0A0A0A;
       color: #f6faf8;
       text-align: center;
+<<<<<<< HEAD
       padding: 40px 20px 25px;
     }
 
@@ -327,10 +535,18 @@
     }
 
     .bottom-bar a {
+=======
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    footer a {
+>>>>>>> 1500274 (your commit message here)
       color: var(--gold);
       text-decoration: none;
     }
 
+<<<<<<< HEAD
     /* RESPONSIVE */
     .menu-toggle {
       display: none;
@@ -387,11 +603,17 @@
         overflow-x: auto;
         display: block;
       }
+=======
+    @media(max-width:768px){
+      header h1 { font-size: 1.7rem; }
+      .content { padding: 20px; }
+>>>>>>> 1500274 (your commit message here)
     }
   </style>
 </head>
 
 <body>
+<<<<<<< HEAD
   <nav>
     <div class="brand">
       <img src="Open.png" alt="Logo">
@@ -415,6 +637,223 @@
     <h1>GCK Open Data Lab</h1>
     <h2>APY Statistics</h2>
   </header>
+=======
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="brand">
+      <img src="Open.png" alt="Logo">
+      <div>
+        <h4>Open Data Lab</h4>
+        <p>Government College Kasaragod</p>
+      </div>
+    </div>
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="agriculture.html" class="active">Agriculture</a></li>
+      <li><a href="agriculture.html#about">About</a></li>
+      <li><a href="agriculture.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <h1>GCK Open Data Lab</h1>
+    <h2>Agriculture Data Portal</h2>
+  </header>
+
+  <!-- CONTENT -->
+  <section class="content">
+    <h4>Area,Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</h4>
+
+    <div class="table"></div>
+     
+
+    <script>
+      let table = document.querySelector(".table");
+      (async () => {
+        let workbook = XLSX.read(await (await fetch("./agriculture 1.xlsx")).arrayBuffer());
+        workbook.SheetNames.forEach(name => {
+          table.innerHTML += XLSX.utils.sheet_to_html(workbook.Sheets[name]);
+        });
+      })();
+    </script>
+
+    <p>
+    Source :Economic Review: 1995(1990-91), 2000 (1991-92 to 1998-99) ,2004( 199-00 to 2001-02),2010 (2002-03 to 2008-09),2021 (2011-12 to 2020-21) | Directorate of Economics and Statistics( 1995,2000,2004, 2010, 2021), CMIE 2000, Coconut Development Board-2010, Coconut Development Board-(2021)
+    </p>
+  
+  <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>View Data</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</td>
+          <td><a href="agriculture 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 1.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production and Productivity of Cashew in Kerala and India (1998-99 to 2020-21)</td>
+          <td><a href="agriculture 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 2.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
+          <td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (1991-92 to 2000-01)</td>
+          <td><a href="agriculture 51.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 51.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2001-02 to 2013-14)</td>
+          <td><a href="agriculture 52.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 52.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2013-14 to 2021-22)</td>
+          <td><a href="agriculture 53.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 53.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rice in India (1950-2022)</td>
+          <td><a href="agriculture 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 4.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield of Wheat in India (1950-2022)</td>
+          <td><a href="agriculture 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 5.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cereals in India (1950-2022)</td>
+          <td><a href="agriculture 6.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 6.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Foodgrains in India (1950-2022)</td>
+          <td><a href="agriculture 7.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 7.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Arecanut in India (1964-2020)</td>
+          <td><a href="agriculture 8.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 8.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cashew in India (1962-2020)</td>
+          <td><a href="agriculture 9.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 9.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coffee in India (1950-2020)</td>
+          <td><a href="agriculture 10.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 10.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coconut in India (1950-2019)</td>
+          <td><a href="agriculture 11.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 11.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rubber in India (1950-2020)</td>
+          <td><a href="agriculture 12.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 12.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Tea in India (1950-2019)</td>
+          <td><a href="agriculture 13.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 13.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Area Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 14.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 14.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Production Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 15.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 15.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Yield Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 16.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 16.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table></section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Open Data Lab |
+    <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+  </footer>
+>>>>>>> 1500274 (your commit message here)
 
   <section class="content">
     <h4><b>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</b></h4>
@@ -510,5 +949,9 @@
     })();
   </script>
 </body>
+<<<<<<< HEAD
 
 </html>
+=======
+</html>
+>>>>>>> 1500274 (your commit message here)
