@@ -229,71 +229,41 @@
      }
 
              /* table */
+    /* EXCEL TABLE STYLING */
+    table {
+      width: 100% !important;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: 'Inter', sans-serif;
+    }
 
-             /* TABLE WRAPPER */
-        .table-wrapper {
-          width: 100%;
-          overflow-x: auto;
-          background: #ffffff;
-          border-radius: 14px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-          margin-top: 20px;
-        }
-        
-        /* MAIN TABLE */
-        .data-table {
-          width: 100%;
-          min-width: 900px;
-          border-collapse: separate;
-          border-spacing: 0;
-          font-family: "Inter", "Segoe UI", sans-serif;
-          font-size: 0.92rem;
-          color: #0f172a;
-        }
-        
-        /* HEADER */
-        .data-table thead th {
-          position: sticky;
-          top: 0;
-          z-index: 2;
-          background: linear-gradient(135deg, #1e3a8a, #2563eb);
-          color: #ffffff;
-          text-transform: uppercase;
-          font-weight: 600;
-          letter-spacing: 0.04em;
-          padding: 14px 12px;
-          border-bottom: 2px solid #c7d2fe;
-        }
-        
-        /* BODY CELLS */
-        .data-table tbody td {
-          padding: 12px;
-          text-align: center;
-          border-bottom: 1px solid #e5e7eb;
-        }
-        
-        /* ZEBRA STRIPES */
-        .data-table tbody tr:nth-child(even) {
-          background-color: #f8fafc;
-        }
-        
-        /* ROW HOVER */
-        .data-table tbody tr:hover {
-          background-color: #eef2ff;
-          transition: background 0.2s ease;
-        }
-        
-        /* FIRST COLUMN HIGHLIGHT */
-        .data-table tbody td:first-child {
-          font-weight: 600;
-          color: #1e40af;
-        }
-        
-        /* FOOTER (IF EXISTS) */
-        .data-table tfoot td {
-          background: #f1f5f9;
-          font-weight: 600;
-        }
+    th {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid var(--outline);
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    tr:hover {
+      background: var(--hover);
+    }
+
+    p {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
         
         /* MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
@@ -417,8 +387,8 @@
 
         <ul id="nav-links">
             <li><a href="/index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
-            <!-- <li><a href="#works"><i class="fas fa-cog fa-fw"></i>Our Works</a></li> -->
-            <!-- <li><a href="#about"><i class="fa fa-user fa-fw"></i>About</a></li> -->
+            <li><a href="agriculture.html" class="active"><i class="fas fa-seedling"></i>Agriculture</a></li>
+            <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
             <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
         </ul>
     </nav>
@@ -431,6 +401,170 @@
     <!--main content goes here-->
     <section class="content">
             <h4><b>Area,Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</b></h4><br>
+
+                      <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>View Data</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</td>
+          <td><a href="agriculture 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 1.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production and Productivity of Cashew in Kerala and India (1998-99 to 2020-21)</td>
+          <td><a href="agriculture 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 2.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
+          <td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (1991-92 to 2000-01)</td>
+          <td><a href="agriculture 51.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 51.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2001-02 to 2013-14)</td>
+          <td><a href="agriculture 52.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 52.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2013-14 to 2021-22)</td>
+          <td><a href="agriculture 53.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 53.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rice in India (1950-2022)</td>
+          <td><a href="agriculture 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 4.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield of Wheat in India (1950-2022)</td>
+          <td><a href="agriculture 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 5.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cereals in India (1950-2022)</td>
+          <td><a href="agriculture 6.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 6.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Foodgrains in India (1950-2022)</td>
+          <td><a href="agriculture 7.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 7.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Arecanut in India (1964-2020)</td>
+          <td><a href="agriculture 8.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 8.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cashew in India (1962-2020)</td>
+          <td><a href="agriculture 9.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 9.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coffee in India (1950-2020)</td>
+          <td><a href="agriculture 10.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 10.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coconut in India (1950-2019)</td>
+          <td><a href="agriculture 11.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 11.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rubber in India (1950-2020)</td>
+          <td><a href="agriculture 12.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 12.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Tea in India (1950-2019)</td>
+          <td><a href="agriculture 13.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 13.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Area Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 14.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 14.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Production Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 15.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 15.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Yield Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 16.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 16.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
         <p>Source :Economic Review: 1995(1990-91), 2000 (1991-92 to 1998-99) ,2004( 199-00 to 2001-02),2010 (2002-03 to 2008-09),2021 (2011-12 to 2020-21)  | Directorate of Economics and Statistics( 1995,2000,2004, 2010, 2021), CMIE 2000,  Coconut Development Board-2010, Coconut Development Board-(2021)</p>
     <!-- future table -->
