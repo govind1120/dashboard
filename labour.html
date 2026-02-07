@@ -1,172 +1,535 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Labour Data</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
- table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 75%;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    <style>
+        :root {
+            --bg: #e8e9eb;
+            --surface: #ffffff;
+            --accent: #1E3A8A;
+            --accent2: #0F172A;
+            --muted: #334155;
+            --outline: #CBD5E1;
+            --text: #1E293B;
+            --hover: #FFF7E0;
+            --footer-bg: #0F172A;
+            --footer-fg: #E0E7FF;
+            --shadow-box: 0 3px 20px rgba(30, 58, 138, 0.12);
+            --shadow-hover: 0 8px 30px rgba(30, 58, 138, 0.2);
+            --gold: #EAB308;
+        }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: var(--surface);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 10px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--outline);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            height: 70px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand img {
+            height: 45px;
+            width: auto;
+        }
+
+        .brand h4 {
+            margin-top: 10px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .brand div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .brand p {
+            font-size: 0.8rem;
+            color: #64748B;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 600;
+            transition: 0.2s;
+            padding: 6px 14px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 6px;
+            font-size: 0.9rem;
+            position: relative;
+            top: 1px;
+        }
+
+        nav ul li a:hover {
+            background: var(--hover);
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+            /* Hamburger menu (mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--surface);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        border-top: 1px solid var(--outline);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav ul li {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      nav ul li a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+ /* HEADER */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
+            border-bottom: 2px solid var(--outline);
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: var(--accent2);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        header h2 {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        @media(max-width:768px){
+            header h1{
+                font-size: 1.8rem;
+                font-weight: 400;
+            }
+            header h2{
+                font-size: .7rem;
+            }
+        }
+/* main */
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--surface);
+            padding: 30px 40px;
+            border-radius: 16px;
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow-box);
+        }
+        .content h4{
+            color: var(--accent2);
+            font-size: 20px;
+        }
+            @media (max-width: 768px) {
+        .content {
+            max-width: 100%;
+            padding: 12px 14px;   
+            margin: 16px 10px;    
+            border-radius: 12px;
+        }
+            .content h3 {
+            color: var(--accent2);
+            font-size: 1.7rem;
+            font-weight: 700;
+            text-align: left;
+            margin-bottom: 16px;
+            padding-left: 8px;
+            color: var(--gold);
+        }
+     }
+
+    /* EXCEL TABLE STYLING */
+    table {
+      width: 100% !important;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid var(--outline);
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    tr:hover {
+      background: var(--hover);
+    }
+
+
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+          .data-table {
+            font-size: 0.85rem;
+          }
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: var(--footer-bg);
+            color: var(--footer-fg);
+            padding: 70px 20px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            text-align: center;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-section h2 {
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            color: var(--accent2);
+            border-radius: 14px;
+            padding: 24px;
+            width: 260px;
+            box-shadow: var(--shadow-box);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .contact-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--accent2);
+        }
+
+        
+                /* FOOTER */
+        footer {
+            background: #0A0A0A;
+            color: #f6faf8;
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        .footer-links a {
+            color: #f6f8f7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-icons a {
+            color: #fbfdfc;
+            margin: 0 10px;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        .bottom-bar {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #f7faf9;
+        }
+
+        .bottom-bar a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+    </style>
+
 </head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+<body>
+    <!-- navbar -->
+    <nav>
+        <div class="brand">
+            <img src="Open.png" alt="Logo">
+            <div>
+                <h4>Open Data Lab</h4>
+                <p>Government College Kasaragod</p>
+            </div>
+        </div>
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-  <div class="w3-container">
-    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
-      <i class="fa fa-remove"></i>
-    </a>
-    <img src="Open.png" style="width:45%;" class="w3-round"><br><br>
-    <h4><b>Open Data Lab</b></h4>
-    <p class="w3-text-grey">Government College Kasaragod</p>
-  </div>
-  <div class="w3-bar-block">
-    <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw w3-margin-right"></i>HOME</a>
-    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>OUR WORKS</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT US</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT US</a>
-  </div>
-</nav>
+        <!--icon -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fa fa-bars"></i>
+        </div>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <ul id="nav-links">
+            <li><a href="/index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="labour.html" class="active"><i class="fas fa-industry"></i>Labour</a></li>
+            <li><a href="labour.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
+            <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
+        </ul>
+    </nav>
+    <!--header-->
+    <header>
+        <h1>GCK Open Data Lab</h1>
+        <h2>Labour Data</h2>
+    </header>
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px">
+    <!--main content goes here-->
+    <section class="content">
+        <h2>Labour Data</h2>
+        <p>Labour data consists of a comprehensive, multi-dimensional body of official statistics regarding work, covering both the supply of labour—such as population, employment, unemployment, and labor force participation rates—and the demand for it, including vacancy rates, industrial relations, and working conditions. Collected through household surveys (like the PLFS in India), population censuses, and establishment surveys, this data is crucial for analyzing labor productivity, wage structures, and the shift between formal and informal sectors. These metrics allow policymakers, researchers, and international organizations like the ILO to monitor the health of the economy, evaluate the quality of employment, and develop evidence-based policies for economic growth and social protection. </p><br>
 
-  <!-- Header -->
-  <header>
-    <img src="Open.png" style="width:65px;" class="w3-square w3-right w3-margin w3-hide-large w3-hover-opacity">
-    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-    <div class="w3-container">
-    <h1><b>GCK OPEN DATA LAB</b></h1>
-    <div class="w3-section w3-bottombar w3-padding-16">
-    </div>
-    </div>
-  </header>
-  <div id="portfolio" class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Labour Data</b></h4><br>
-    <div class="w3-row-padding">
-    <p>At to be uploaded</p><br>
-    <table>
-          <tr>
-              <th>Sub-Catagory</th>
-              <th>Link</th>
-              <th>Download Data</th>
-          </tr>
-          <tr>
-              <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)</td>
-              <td><a href="labour 1.html">View data</a></td>
-              <td><center><a href="labour 1.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)">
+    <!-- future table -->
+        <div class="table-wrapper">
+            <div class="excel-table"></div>
+        </div>
+        <table>
+                <tr>
+                    <th>Sub-Catagory</th>
+                    <th>Link</th>
+                    <th>Download Data</th>
+                </tr>
+                <tr>
+                    <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)</td>
+                    <td><a href="labour 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                    <td><center><a href="labour 1.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)">
+                        <i class="fa fa-download" style="font-size: 23px;"></i>
+                        </a></center></td>
+                </tr>
+                <tr>
+                    <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)</td>
+                    <td><a href="labour 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                    <td><center><a href="labour 2.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)">
+                    <i class="fa fa-download" style="font-size: 23px;"></i>
+                    </a></center></td>
+                </tr>
+                <tr>
+                <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)</td>
+                <td><a href="labour 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                <td><center><a href="labour 3.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)">
+                    <i class="fa fa-download" style="font-size: 23px;"></i>
+                    </a></center></td>
+            </tr>
+            <tr>
+                <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)</td>
+                <td><a href="labour 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                <td><center><a href="labour 4.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)">
                 <i class="fa fa-download" style="font-size: 23px;"></i>
                 </a></center></td>
-          </tr>
-          <tr>
-            <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)</td>
-            <td><a href="labour 2.html">View data</a></td>
-            <td><center><a href="labour 2.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)">
-              <i class="fa fa-download" style="font-size: 23px;"></i>
-              </a></center></td>
+            </tr>
+            <tr>
+            <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)</td>
+            <td><a href="labour 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+            <td><center><a href="labour 5.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)">
+                <i class="fa fa-download" style="font-size: 23px;"></i>
+                </a></center></td>
         </tr>
-        <tr>
-          <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)</td>
-          <td><a href="labour 3.html">View data</a></td>
-          <td><center><a href="labour 3.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)">
-            <i class="fa fa-download" style="font-size: 23px;"></i>
-            </a></center></td>
-      </tr>
-      <tr>
-        <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)</td>
-        <td><a href="labour 4.html">View data</a></td>
-        <td><center><a href="labour 4.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)">
-          <i class="fa fa-download" style="font-size: 23px;"></i>
-          </a></center></td>
-    </tr>
-    <tr>
-      <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)</td>
-      <td><a href="labour 5.html">View data</a></td>
-      <td><center><a href="labour 5.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)">
-        <i class="fa fa-download" style="font-size: 23px;"></i>
-        </a></center></td>
-  </tr>
-  </table>
-    <br></div>
-      <div id="about" class="w3-container w3-padding-large" style="margin-bottom:32px"></div>
-    <h4><b>About Us</b></h4>
-    <div class="w3-row-padding">
+        </table>
+    </section>
+
+      <!-- ABOUT -->
+  <section id="about" class="content">
+    <h2>About Us</h2>
     <p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary collaboration among faculty members in India and abroad to work towards open data practices and assist interested government departments and industries to convert their data into Linked Open Data (LOD) format.</p>
-    <hr>
-    </div></div>
-  <!-- Contact Section -->
-  <div class="w3-container w3-padding-large w3-grey">
-    <h4 id="contact"><b>Contact Us</b></h4>
-    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
-      <div class="w3-third w3-dark-grey">
-        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
-        <p>odlab(at)gck.ac.in</p>
-      </div>
-      <div class="w3-third w3-teal">
-        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
-        <p>Kasaragod,Kerala,India</p>
-      </div>
-      <div class="w3-third w3-dark-grey">
-        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
-        <p>+91-9495122006</p>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <!-- Footer -->
-  <footer class="w3-container w3-padding-32 w3-dark-grey">
-  <div class="w3-row-padding">
-    <div class="w3-third">
-      <h3>FOOTER</h3>
-    </div>
-  
-    <div class="w3-third">
-      <h3>BLOG POSTS</h3>
-    </div>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i class="fa fa-envelope"></i>
+                <h4>Email</h4>
+                <p>odlab@gck.ac.in</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa fa-map-marker-alt"></i>
+                <h4>Address</h4>
+                <p>Government College Kasaragod, Kerala, India</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa fa-phone"></i>
+                <h4>Phone</h4>
+                <p>+91-9495122006</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="w3-third">
-      <h3>POPULAR TAGS</h3>
-    </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="#works">Our Works</a> |
+            <a href="#about">About</a> |
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-solid fa-globe"></i></a>
+        </div>
+        <div class="bottom-bar">
+            © 2025 Open Data Lab | Powered by
+            <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+        </div>
+    </footer>
 
-  </div>
-  </footer>
-  
-  <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://gck.ac.in/" title="W3.CSS" target="_blank" class="w3-hover-opacity">GCK</a></div>
+            <!-- Hamburger menu toggle  -->
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
 
-<!-- End page content -->
-</div>
-<script>
-  // Script to open and close sidebar
-  function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("myOverlay").style.display = "block";
-  }
-   
-  function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("myOverlay").style.display = "none";
-  }
-  </script>
+        menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+        });
+
+
+            (async () => {
+                // 1️⃣ Select container
+                const container = document.querySelector(".excel-table");
+            
+                // 2️⃣ Fetch Excel file
+                const response = await fetch("./agriculture 1.xlsx");
+                const data = await response.arrayBuffer();
+            
+                // 3️⃣ Read workbook
+                const workbook = XLSX.read(data);
+                console.log(workbook);
+            
+                // 4️⃣ Get first sheet
+                const sheetName = workbook.SheetNames[0];
+            
+                // 5️⃣ Convert to HTML
+                const html = XLSX.utils.sheet_to_html(
+                    workbook.Sheets[sheetName],
+                    { editable: false }
+                );
+            
+                // 6️⃣ Insert table
+                container.innerHTML = html;
+            
+                // 7️⃣ Style the generated table
+                const table = container.querySelector("table");
+                table.classList.add("data-table");
+            })();
+        </script>
 </body>
 </html>
