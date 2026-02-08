@@ -1,114 +1,657 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Agriculture</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<style>
- table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 75%;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    <style>
+        :root {
+            --bg: #e8e9eb;
+            --surface: #ffffff;
+            --accent: #1E3A8A;
+            --accent2: #0F172A;
+            --muted: #334155;
+            --outline: #CBD5E1;
+            --text: #1E293B;
+            --hover: #FFF7E0;
+            --footer-bg: #0F172A;
+            --footer-fg: #E0E7FF;
+            --shadow-box: 0 3px 20px rgba(30, 58, 138, 0.12);
+            --shadow-hover: 0 8px 30px rgba(30, 58, 138, 0.2);
+            --gold: #EAB308;
+        }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Open Data Lab</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-@-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-@keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
-}
+        body {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
+        /* NAVBAR */
+        nav {
+            background: var(--surface);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 10px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--outline);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            height: 70px;
+        }
 
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
-</style>
-</head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+        .brand img {
+            height: 45px;
+            width: auto;
+        }
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:00px">
+        .brand h4 {
+            margin-top: 10px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+        }
 
-  <!-- Header -->
-  <header id="portfolio">
-    <div class="w3-container">
-    <h1><b>GCK OPEN DATA LAB</b></h1>
-    <div class="w3-section w3-bottombar w3-padding-16">
-    </div>
-    </div>
-  </header>
-  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Area,Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</b></h4><br>
-    <div class="w3-row-padding">
-      <div class="table"></div>
-    <script>
-        let table = document.querySelector(".table");
-        (
-            async() => {
-                let workbook = XLSX.read(await (await fetch("./agriculture 3.xlsx")).arrayBuffer());
-                console.log(workbook);
-                let worksheet = workbook.SheetNames;
-                worksheet.forEach(name => {
-                    let html = XLSX.utils.sheet_to_html(workbook.Sheets[name]);
-                    table.innerHTML += `
-                    ${html}
-                    `;
-                })
+        .brand div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .brand p {
+            font-size: 0.8rem;
+            color: #64748B;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 600;
+            transition: 0.2s;
+            padding: 6px 14px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 6px;
+            font-size: 0.9rem;
+            position: relative;
+            top: 1px;
+        }
+
+        nav ul li a:hover {
+            background: var(--hover);
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+            /* Hamburger menu (mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--surface);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        border-top: 1px solid var(--outline);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav ul li {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      nav ul li a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+ /* HEADER */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
+            border-bottom: 2px solid var(--outline);
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: var(--accent2);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        header h2 {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        @media(max-width:768px){
+            header h1{
+                font-size: 1.8rem;
+                font-weight: 400;
             }
-        )()
-    </script>
-  <p>Source :Economic Review: 1995(1990-91), 2000 (1991-92 to 1998-99) ,2004( 199-00 to 2001-02),2010 (2002-03 to 2008-09),2021 (2011-12 to 2020-21)  | Directorate of Economics and Statistics( 1995,2000,2004, 2010, 2021), CMIE 2000,  Coconut Development Board-2010, Coconut Development Board-(2021)</p>
-<!-- End page content -->
-</div>
+            header h2{
+                font-size: .7rem;
+            }
+        }
+/* main */
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--surface);
+            padding: 30px 40px;
+            border-radius: 16px;
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow-box);
+        }
+        .content h4{
+            color: var(--accent2);
+            font-size: 20px;
+        }
+            @media (max-width: 768px) {
+        .content {
+            max-width: 100%;
+            padding: 12px 14px;   
+            margin: 16px 10px;    
+            border-radius: 12px;
+        }
+            .content h3 {
+            color: var(--accent2);
+            font-size: 1.7rem;
+            font-weight: 700;
+            text-align: left;
+            margin-bottom: 16px;
+            padding-left: 8px;
+            color: var(--gold);
+        }
+     }
 
+             /* table */
+    /* EXCEL TABLE STYLING */
+    table {
+      width: 100% !important;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid var(--outline);
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    tr:hover {
+      background: var(--hover);
+    }
+
+    p {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+        
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+          .data-table {
+            font-size: 0.85rem;
+          }
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: var(--footer-bg);
+            color: var(--footer-fg);
+            padding: 70px 20px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            text-align: center;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-section h2 {
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            color: var(--accent2);
+            border-radius: 14px;
+            padding: 24px;
+            width: 260px;
+            box-shadow: var(--shadow-box);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .contact-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--accent2);
+        }
+
+        
+                /* FOOTER */
+        footer {
+            background: #0A0A0A;
+            color: #f6faf8;
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        .footer-links a {
+            color: #f6f8f7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-icons a {
+            color: #fbfdfc;
+            margin: 0 10px;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        .bottom-bar {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #f7faf9;
+        }
+
+        .bottom-bar a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- navbar -->
+    <nav>
+        <div class="brand">
+            <img src="Open.png" alt="Logo">
+            <div>
+                <h4>Open Data Lab</h4>
+                <p>Government College Kasaragod</p>
+            </div>
+        </div>
+
+        <!--icon -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fa fa-bars"></i>
+        </div>
+
+        <ul id="nav-links">
+            <li><a href="/index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="agriculture.html" class="active"><i class="fas fa-seedling"></i>Agriculture</a></li>
+            <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
+            <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
+        </ul>
+    </nav>
+    <!--header-->
+    <header>
+        <h1>GCK Open Data Lab</h1>
+        <h2>APY Statistics</h2>
+    </header>
+
+    <!--main content goes here-->
+    <section class="content">
+            <h4><b>Area,Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</b></h4><br>
+
+                      <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>View Data</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</td>
+          <td><a href="agriculture 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 1.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production and Productivity of Cashew in Kerala and India (1998-99 to 2020-21)</td>
+          <td><a href="agriculture 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 2.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
+          <td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (1991-92 to 2000-01)</td>
+          <td><a href="agriculture 51.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 51.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2001-02 to 2013-14)</td>
+          <td><a href="agriculture 52.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 52.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Production and Productivity of Principal Crops in Kerala (2013-14 to 2021-22)</td>
+          <td><a href="agriculture 53.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 53.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rice in India (1950-2022)</td>
+          <td><a href="agriculture 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 4.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield of Wheat in India (1950-2022)</td>
+          <td><a href="agriculture 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 5.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cereals in India (1950-2022)</td>
+          <td><a href="agriculture 6.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 6.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Foodgrains in India (1950-2022)</td>
+          <td><a href="agriculture 7.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 7.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Arecanut in India (1964-2020)</td>
+          <td><a href="agriculture 8.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 8.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Cashew in India (1962-2020)</td>
+          <td><a href="agriculture 9.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 9.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coffee in India (1950-2020)</td>
+          <td><a href="agriculture 10.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 10.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Coconut in India (1950-2019)</td>
+          <td><a href="agriculture 11.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 11.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Rubber in India (1950-2020)</td>
+          <td><a href="agriculture 12.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 12.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>Area, Production, Yield Statistics of Tea in India (1950-2019)</td>
+          <td><a href="agriculture 13.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 13.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Area Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 14.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 14.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Production Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 15.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 15.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>State-wise Yield Statistics of Rice in India (1950-21)</td>
+          <td><a href="agriculture 16.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+          <td>
+            <center><a href="agriculture 16.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+        <p>Source :Economic Review: 1995(1990-91), 2000 (1991-92 to 1998-99) ,2004( 199-00 to 2001-02),2010 (2002-03 to 2008-09),2021 (2011-12 to 2020-21)  | Directorate of Economics and Statistics( 1995,2000,2004, 2010, 2021), CMIE 2000,  Coconut Development Board-2010, Coconut Development Board-(2021)</p>
+    <!-- future table -->
+        <div class="table-wrapper">
+            <div class="excel-table"></div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i class="fa fa-envelope"></i>
+                <h4>Email</h4>
+                <p>odlab@gck.ac.in</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa fa-map-marker-alt"></i>
+                <h4>Address</h4>
+                <p>Government College Kasaragod, Kerala, India</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa fa-phone"></i>
+                <h4>Phone</h4>
+                <p>+91-9495122006</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="#works">Our Works</a> |
+            <a href="#about">About</a> |
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-solid fa-globe"></i></a>
+        </div>
+        <div class="bottom-bar">
+            © 2025 Open Data Lab | Powered by
+            <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+        </div>
+    </footer>
+
+            <!--  Hamburger menu toggle -->
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+
+        menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+        });
+
+
+            (async () => {
+                // 1️⃣ Select container
+                const container = document.querySelector(".excel-table");
+            
+                // 2️⃣ Fetch Excel file
+                const response = await fetch("./agriculture 3.xlsx");
+                const data = await response.arrayBuffer();
+            
+                // 3️⃣ Read workbook
+                const workbook = XLSX.read(data);
+                console.log(workbook);
+            
+                // 4️⃣ Get first sheet
+                const sheetName = workbook.SheetNames[0];
+            
+                // 5️⃣ Convert to HTML
+                const html = XLSX.utils.sheet_to_html(
+                    workbook.Sheets[sheetName],
+                    { editable: false }
+                );
+            
+                // 6️⃣ Insert table
+                container.innerHTML = html;
+            
+                // 7️⃣ Style the generated table
+                const table = container.querySelector("table");
+                table.classList.add("data-table");
+            })();
+        </script>
 </body>
 </html>
