@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <style>
@@ -125,49 +128,49 @@
             color: var(--muted);
         }
 
-            /* Hamburger menu (mobile) */
-    .menu-toggle {
-      display: none;
-      font-size: 1.6rem;
-      color: var(--accent);
-      cursor: pointer;
-    }
+        /* Hamburger menu (mobile) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
 
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
 
-      nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--surface);
-        position: absolute;
-        top: 70px;
-        left: 0;
-        border-top: 1px solid var(--outline);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        transition: all 0.3s ease-in-out;
-      }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--surface);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                border-top: 1px solid var(--outline);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease-in-out;
+            }
 
-      nav ul.show {
-        display: flex;
-      }
+            nav ul.show {
+                display: flex;
+            }
 
-      nav ul li {
-        text-align: center;
-        width: 100%;
-        padding: 10px 0;
-      }
+            nav ul li {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
 
-      nav ul li a {
-        width: 100%;
-        justify-content: center;
-      }
-    }
+            nav ul li a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
 
- /* HEADER */
+        /* HEADER */
         header {
             text-align: center;
             padding: 60px 20px 40px;
@@ -181,22 +184,26 @@
             font-weight: 800;
             letter-spacing: 1px;
         }
+
         header h2 {
             color: var(--accent);
             font-weight: 500;
             font-size: 1.1rem;
             margin-top: 10px;
         }
-        @media(max-width:768px){
-            header h1{
+
+        @media(max-width:768px) {
+            header h1 {
                 font-size: 1.8rem;
                 font-weight: 400;
             }
-            header h2{
+
+            header h2 {
                 font-size: .7rem;
             }
         }
-/* main */
+
+        /* main */
         .content {
             max-width: 1000px;
             margin: 40px auto;
@@ -206,64 +213,67 @@
             border-left: 5px solid var(--accent);
             box-shadow: var(--shadow-box);
         }
-        .content h4{
+
+        .content h4 {
             color: var(--accent2);
             font-size: 20px;
         }
-            @media (max-width: 768px) {
-        .content {
-            max-width: 100%;
-            padding: 12px 14px;   
-            margin: 16px 10px;    
-            border-radius: 12px;
-        }
+
+        @media (max-width: 768px) {
+            .content {
+                max-width: 100%;
+                padding: 12px 14px;
+                margin: 16px 10px;
+                border-radius: 12px;
+            }
+
             .content h3 {
-            color: var(--accent2);
-            font-size: 1.7rem;
-            font-weight: 700;
-            text-align: left;
-            margin-bottom: 16px;
-            padding-left: 8px;
-            color: var(--gold);
+                color: var(--accent2);
+                font-size: 1.7rem;
+                font-weight: 700;
+                text-align: left;
+                margin-bottom: 16px;
+                padding-left: 8px;
+                color: var(--gold);
+            }
         }
-     }
 
-    /* EXCEL TABLE STYLING */
-    table {
-      width: 100% !important;
-      border-collapse: collapse;
-      margin: 30px 0;
-      font-family: 'Inter', sans-serif;
-    }
+        /* EXCEL TABLE STYLING */
+        table {
+            width: 100% !important;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-family: 'Inter', sans-serif;
+        }
 
-    th {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      padding: 12px;
-      text-align: left;
-    }
+        th {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+        }
 
-    td {
-      border: 1px solid var(--outline);
-      padding: 10px;
-      font-size: 15px;
-    }
+        td {
+            border: 1px solid var(--outline);
+            padding: 10px;
+            font-size: 15px;
+        }
 
-    tr:nth-child(even) {
-      background: #F8FAFC;
-    }
+        tr:nth-child(even) {
+            background: #F8FAFC;
+        }
 
-    tr:hover {
-      background: var(--hover);
-    }
+        tr:hover {
+            background: var(--hover);
+        }
 
 
 
         /* MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
-          .data-table {
-            font-size: 0.85rem;
-          }
+            .data-table {
+                font-size: 0.85rem;
+            }
         }
 
         /* CONTACT SECTION */
@@ -319,8 +329,8 @@
             color: var(--accent2);
         }
 
-        
-                /* FOOTER */
+
+        /* FOOTER */
         footer {
             background: #0A0A0A;
             color: #f6faf8;
@@ -360,9 +370,15 @@
             color: var(--gold);
             text-decoration: none;
         }
+
+        nav ul li a.active {
+            background: var(--hover);
+            color: var(--gold);
+        }
     </style>
 
 </head>
+
 <body>
     <!-- navbar -->
     <nav>
@@ -381,7 +397,7 @@
 
         <ul id="nav-links">
             <li><a href="/index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
-            <li><a href="labour.html" class="active"><i class="fas fa-industry"></i>Labour</a></li>
+            <li><a href="labour.html#labour" class="active"><i class="fa fa-users"></i>Labour</a></li>
             <li><a href="labour.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
             <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
         </ul>
@@ -393,63 +409,91 @@
     </header>
 
     <!--main content goes here-->
-    <section class="content">
+    <section id="labour" class="content">
         <h2>Labour Data</h2>
-        <p>Labour data consists of a comprehensive, multi-dimensional body of official statistics regarding work, covering both the supply of labour—such as population, employment, unemployment, and labor force participation rates—and the demand for it, including vacancy rates, industrial relations, and working conditions. Collected through household surveys (like the PLFS in India), population censuses, and establishment surveys, this data is crucial for analyzing labor productivity, wage structures, and the shift between formal and informal sectors. These metrics allow policymakers, researchers, and international organizations like the ILO to monitor the health of the economy, evaluate the quality of employment, and develop evidence-based policies for economic growth and social protection. </p><br>
+        <p>Labour data consists of a comprehensive, multi-dimensional body of official statistics regarding work,
+            covering both the supply of labour—such as population, employment, unemployment, and labor force
+            participation rates—and the demand for it, including vacancy rates, industrial relations, and working
+            conditions. Collected through household surveys (like the PLFS in India), population censuses, and
+            establishment surveys, this data is crucial for analyzing labor productivity, wage structures, and the shift
+            between formal and informal sectors. These metrics allow policymakers, researchers, and international
+            organizations like the ILO to monitor the health of the economy, evaluate the quality of employment, and
+            develop evidence-based policies for economic growth and social protection. </p><br>
 
-    <!-- future table -->
+        <!-- future table -->
         <div class="table-wrapper">
             <div class="excel-table"></div>
         </div>
         <table>
-                <tr>
-                    <th>Sub-Catagory</th>
-                    <th>Link</th>
-                    <th>Download Data</th>
-                </tr>
-                <tr>
-                    <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)</td>
-                    <td><a href="labour 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-                    <td><center><a href="labour 1.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)">
-                        <i class="fa fa-download" style="font-size: 23px;"></i>
-                        </a></center></td>
-                </tr>
-                <tr>
-                    <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)</td>
-                    <td><a href="labour 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-                    <td><center><a href="labour 2.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)">
-                    <i class="fa fa-download" style="font-size: 23px;"></i>
-                    </a></center></td>
-                </tr>
-                <tr>
+            <tr>
+                <th>Sub-Catagory</th>
+                <th>Link</th>
+                <th>Download Data</th>
+            </tr>
+            <tr>
+                <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)</td>
+                <td><a href="labour 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                <td>
+                    <center><a href="labour 1.xlsx"
+                            download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 1)">
+                            <i class="fa fa-download" style="font-size: 23px;"></i>
+                        </a></center>
+                </td>
+            </tr>
+            <tr>
+                <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)</td>
+                <td><a href="labour 2.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                <td>
+                    <center><a href="labour 2.xlsx"
+                            download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 2)">
+                            <i class="fa fa-download" style="font-size: 23px;"></i>
+                        </a></center>
+                </td>
+            </tr>
+            <tr>
                 <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)</td>
                 <td><a href="labour 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-                <td><center><a href="labour 3.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)">
-                    <i class="fa fa-download" style="font-size: 23px;"></i>
-                    </a></center></td>
+                <td>
+                    <center><a href="labour 3.xlsx"
+                            download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 3)">
+                            <i class="fa fa-download" style="font-size: 23px;"></i>
+                        </a></center>
+                </td>
             </tr>
             <tr>
                 <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)</td>
                 <td><a href="labour 4.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-                <td><center><a href="labour 4.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)">
-                <i class="fa fa-download" style="font-size: 23px;"></i>
-                </a></center></td>
+                <td>
+                    <center><a href="labour 4.xlsx"
+                            download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)">
+                            <i class="fa fa-download" style="font-size: 23px;"></i>
+                        </a></center>
+                </td>
             </tr>
             <tr>
-            <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)</td>
-            <td><a href="labour 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-            <td><center><a href="labour 5.xlsx" download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)">
-                <i class="fa fa-download" style="font-size: 23px;"></i>
-                </a></center></td>
-        </tr>
+                <td>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)</td>
+                <td><a href="labour 5.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                <td>
+                    <center><a href="labour 5.xlsx"
+                            download="Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 5)">
+                            <i class="fa fa-download" style="font-size: 23px;"></i>
+                        </a></center>
+                </td>
+            </tr>
         </table>
     </section>
 
-      <!-- ABOUT -->
-  <section id="about" class="content">
-    <h2>About Us</h2>
-    <p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary collaboration among faculty members in India and abroad to work towards open data practices and assist interested government departments and industries to convert their data into Linked Open Data (LOD) format.</p>
-  </section>
+    <!-- ABOUT -->
+    <section id="about" class="content">
+        <h2>About Us</h2>
+        <p>This project proposes to set up practices and framework for releasing public data in the Linked Open Data for
+            the State of Kerala. In this regard, we propose to establish an Open Data Laboratory at Government College
+            Kasaragod. Further, the lab will function as a nodal centre for training students of science, humanities and
+            engineering for data curation, analysis and releases. Further, the project envisages multidisciplinary
+            collaboration among faculty members in India and abroad to work towards open data practices and assist
+            interested government departments and industries to convert their data into Linked Open Data (LOD) format.
+        </p>
+    </section>
 
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
@@ -492,44 +536,45 @@
         </div>
     </footer>
 
-            <!-- Hamburger menu toggle  -->
+    <!-- Hamburger menu toggle  -->
     <script>
         const menuToggle = document.getElementById("menu-toggle");
         const navLinks = document.getElementById("nav-links");
 
         menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
+            navLinks.classList.toggle("show");
         });
 
 
-            (async () => {
-                // 1️⃣ Select container
-                const container = document.querySelector(".excel-table");
-            
-                // 2️⃣ Fetch Excel file
-                const response = await fetch("./agriculture 1.xlsx");
-                const data = await response.arrayBuffer();
-            
-                // 3️⃣ Read workbook
-                const workbook = XLSX.read(data);
-                console.log(workbook);
-            
-                // 4️⃣ Get first sheet
-                const sheetName = workbook.SheetNames[0];
-            
-                // 5️⃣ Convert to HTML
-                const html = XLSX.utils.sheet_to_html(
-                    workbook.Sheets[sheetName],
-                    { editable: false }
-                );
-            
-                // 6️⃣ Insert table
-                container.innerHTML = html;
-            
-                // 7️⃣ Style the generated table
-                const table = container.querySelector("table");
-                table.classList.add("data-table");
-            })();
-        </script>
+        (async () => {
+            // 1️⃣ Select container
+            const container = document.querySelector(".excel-table");
+
+            // 2️⃣ Fetch Excel file
+            const response = await fetch("./agriculture 1.xlsx");
+            const data = await response.arrayBuffer();
+
+            // 3️⃣ Read workbook
+            const workbook = XLSX.read(data);
+            console.log(workbook);
+
+            // 4️⃣ Get first sheet
+            const sheetName = workbook.SheetNames[0];
+
+            // 5️⃣ Convert to HTML
+            const html = XLSX.utils.sheet_to_html(
+                workbook.Sheets[sheetName],
+                { editable: false }
+            );
+
+            // 6️⃣ Insert table
+            container.innerHTML = html;
+
+            // 7️⃣ Style the generated table
+            const table = container.querySelector("table");
+            table.classList.add("data-table");
+        })();
+    </script>
 </body>
+
 </html>
