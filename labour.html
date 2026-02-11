@@ -121,6 +121,48 @@
             color: var(--gold);
         }
 
+        /* Hamburger menu (mobile) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--surface);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                border-top: 1px solid var(--outline);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease-in-out;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            nav ul li a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         /* HEADER */
         header {
             text-align: center;
@@ -167,10 +209,8 @@
             color: var(--muted);
             margin-bottom: 16px;
             font-size: 1.05rem;
-            /* Aligned with Agriculture size */
             text-align: justify;
             line-height: 1.75;
-            /* Aligned with Agriculture spacing */
         }
 
         /* TABLE */

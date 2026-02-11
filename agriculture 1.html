@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agriculture Data - Open Data Lab | GCK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <style>
         :root {
-            --bg: #F8FAFC; /* Cleaned up to match Agriculture bg */
+            --bg: #F8FAFC;
             --surface: #ffffff;
             --accent: #1E3A8A;
             --accent2: #0F172A;
@@ -105,7 +108,8 @@
             align-items: center;
         }
 
-        nav ul li a:hover, nav ul li a.active {
+        nav ul li a:hover,
+        nav ul li a.active {
             background: var(--hover);
             color: var(--gold);
         }
@@ -141,7 +145,7 @@
             border-radius: 16px;
             border-left: 5px solid var(--accent);
             box-shadow: var(--shadow-box);
-            animation: fadeIn 0.8s ease-in-out; /* The animation you requested */
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         .content h4 {
@@ -151,7 +155,8 @@
         }
 
         /* DATA TABLE STYLING */
-        .data-table, table {
+        .data-table,
+        table {
             width: 100% !important;
             border-collapse: collapse;
             margin: 30px 0;
@@ -175,8 +180,14 @@
             font-size: 15px;
         }
 
-        tr:nth-child(even) { background-color: #F8FAFC; }
-        tr:hover { background: var(--hover); transition: 0.2s; }
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        tr:hover {
+            background: var(--hover);
+            transition: 0.2s;
+        }
 
         /* DOWNLOAD ICON (Circular style) */
         .download-icon {
@@ -204,6 +215,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -239,8 +251,16 @@
             transition: transform 0.3s;
         }
 
-        .contact-card:hover { transform: translateY(-6px); }
-        .contact-card i { font-size: 2rem; color: var(--accent); margin-bottom: 10px; display: block; }
+        .contact-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
 
         /* FOOTER */
         footer {
@@ -250,24 +270,87 @@
             padding: 40px 20px 25px;
         }
 
-        .footer-links a { color: #f6f8f7; text-decoration: none; margin: 0 10px; }
-        .footer-links a:hover, .bottom-bar a:hover { color: var(--gold); }
-        .social-icons { margin-bottom: 15px; }
-        .social-icons a { color: #fbfdfc; margin: 0 10px; font-size: 1.3rem; transition: 0.3s; }
-        .social-icons a:hover { color: var(--gold); }
-        .bottom-bar { margin-top: 15px; font-size: 0.9rem; color: #f7faf9; }
-        .bottom-bar a { color: var(--gold); text-decoration: none; }
+        .footer-links a {
+            color: #f6f8f7;
+            text-decoration: none;
+            margin: 0 10px;
+        }
 
-        /* RESPONSIVE */
-        .menu-toggle { display: none; font-size: 1.6rem; color: var(--accent); cursor: pointer; }
+        .footer-links a:hover,
+        .bottom-bar a:hover {
+            color: var(--gold);
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fbfdfc;
+            margin: 0 10px;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        .bottom-bar {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #f7faf9;
+        }
+
+        .bottom-bar a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* Hamburger menu (mobile) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background: var(--surface); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-            nav ul.show { display: flex; }
-            nav ul li { padding: 10px 0; text-align: center; width: 100%; }
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--surface);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                border-top: 1px solid var(--outline);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease-in-out;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            nav ul li a {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="brand">
@@ -295,7 +378,7 @@
 
     <section class="content">
         <h4><b>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</b></h4>
-        
+
         <div class="table-wrapper">
             <div class="excel-table"></div>
         </div>
@@ -313,14 +396,16 @@
                     <td>Area, Production, Productivity of Rice in Kerala & India (1991-92 to 2020-21)</td>
                     <td><a href="agriculture 1.html">View data <i class="fas fa-external-link-alt"></i></a></td>
                     <td>
-                        <center><a href="agriculture 1.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center>
+                        <center><a href="agriculture 1.xlsx" download class="download-icon"><i
+                                    class="fas fa-download"></i></a></center>
                     </td>
                 </tr>
-                </tbody>
+            </tbody>
         </table>
-        
+
         <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
-            Source: Economic Review: 1997, 1999, 2003, 2010, 2012, 2021 | Directorate of Economics and Statistics, CMIE, RBI.
+            Source: Economic Review: 1997, 1999, 2003, 2010, 2012, 2021 | Directorate of Economics and Statistics, CMIE,
+            RBI.
         </p>
     </section>
 
@@ -347,7 +432,8 @@
 
     <footer>
         <div class="footer-links">
-            <a href="index.html#work">Our Works</a> | <a href="index.html#about">About</a> | <a href="index.html#contact">Contact</a>
+            <a href="index.html#work">Our Works</a> | <a href="index.html#about">About</a> | <a
+                href="index.html#contact">Contact</a>
         </div>
         <div class="social-icons">
             <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -356,7 +442,8 @@
             <a href="#"><i class="fa-solid fa-globe"></i></a>
         </div>
         <div class="bottom-bar">
-            © 2025 Open Data Lab | Powered by <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+            © 2025 Open Data Lab | Powered by <a href="https://gck.ac.in/" target="_blank">Government College
+                Kasaragod</a>
         </div>
     </footer>
 
@@ -382,4 +469,5 @@
         })();
     </script>
 </body>
+
 </html>
