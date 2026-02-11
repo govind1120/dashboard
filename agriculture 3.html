@@ -2,481 +2,513 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agriculture Data - Open Data Lab | GCK</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agriculture Data - Open Data Lab | GCK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-    <style>
-        :root {
-            --bg: #F8FAFC;
-            --surface: #ffffff;
-            --accent: #1E3A8A;
-            --accent2: #0F172A;
-            --muted: #334155;
-            --outline: #CBD5E1;
-            --text: #1E293B;
-            --hover: #FFF7E0;
-            --footer-bg: #0F172A;
-            --footer-fg: #E0E7FF;
-            --shadow-box: 0 3px 20px rgba(30, 58, 138, 0.12);
-            --shadow-hover: 0 8px 30px rgba(30, 58, 138, 0.2);
-            --gold: #EAB308;
-        }
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #ffffff;
+      --accent: #1E3A8A;
+      --accent2: #0F172A;
+      --muted: #334155;
+      --outline: #CBD5E1;
+      --text: #1E293B;
+      --hover: #FFF7E0;
+      --footer-bg: #0F172A;
+      --footer-fg: #E0E7FF;
+      --shadow-box: 0 3px 20px rgba(30, 58, 138, 0.12);
+      --shadow-hover: 0 8px 30px rgba(30, 58, 138, 0.2);
+      --gold: #EAB308;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Barlow', sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-        /* NAVBAR */
-        nav {
-            background: var(--surface);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-            padding: 10px 36px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--outline);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            height: 70px;
-        }
+    /* NAVBAR */
+    nav {
+      background: var(--surface);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      padding: 10px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--outline);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 70px;
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .brand img {
-            height: 45px;
-            width: auto;
-            border-radius: 8px;
-        }
+    .brand img {
+      height: 45px;
+      width: auto;
+      border-radius: 8px;
+    }
 
-        .brand h4 {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin: 0;
-        }
+    .brand h4 {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin: 0;
+    }
 
-        .brand div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            line-height: 1.2;
-        }
+    .brand div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.2;
+    }
 
-        .brand p {
-            font-size: 0.8rem;
-            color: #64748B;
-            margin: 0;
-        }
+    .brand p {
+      font-size: 0.8rem;
+      color: #64748B;
+      margin: 0;
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--muted);
-            font-weight: 600;
-            transition: 0.2s;
-            padding: 6px 14px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-        }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+    }
 
-        nav ul li a:hover,
-        nav ul li a.active {
-            background: var(--hover);
-            color: var(--gold);
-        }
+    nav ul li a i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+      position: relative;
+      top: 1px;
+    }
 
-        /* HEADER */
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
-            border-bottom: 2px solid var(--outline);
-        }
+    nav ul li {
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+    }
 
-        header h1 {
-            font-size: 2.4rem;
-            color: var(--accent2);
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
+    nav ul li a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        transition: 0.2s;
+        padding: 6px 14px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+      }
+      
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--hover);
+      color: var(--gold);
+    }
 
-        header h2 {
-            color: var(--accent);
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
+      border-bottom: 2px solid var(--outline);
+    }
 
-        /* MAIN CONTENT + ANIMATION */
-        .content {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: var(--surface);
-            padding: 32px;
-            border-radius: 16px;
-            border-left: 5px solid var(--accent);
-            box-shadow: var(--shadow-box);
-            animation: fadeIn 0.8s ease-in-out;
-        }
+    header h1 {
+      font-size: 2.4rem;
+      color: var(--accent2);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
 
-        .content h4 {
-            color: var(--accent2);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
+    header h2 {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
 
-        /* DATA TABLE STYLING */
-        .data-table,
-        table {
-            width: 100% !important;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: var(--surface);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-box);
-        }
+    /* MAIN CONTENT + ANIMATION */
+    .content {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: var(--surface);
+      padding: 32px;
+      border-radius: 16px;
+      border-left: 5px solid var(--accent);
+      box-shadow: var(--shadow-box);
+      animation: fadeIn 0.8s ease-in-out;
+    }
 
-        th {
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            color: white;
-            padding: 16px 12px;
-            text-align: left;
-            font-weight: 600;
-        }
+    .content h4 {
+      color: var(--accent2);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
 
-        td {
-            padding: 14px 12px;
-            border-bottom: 1px solid var(--outline);
-            font-size: 15px;
-        }
+    /* DATA TABLE STYLING */
+    .data-table,
+    table {
+      width: 100% !important;
+      border-collapse: collapse;
+      margin: 30px 0;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-box);
+    }
 
-        tr:nth-child(even) {
-            background-color: #F8FAFC;
-        }
+    th {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      padding: 16px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
 
-        tr:hover {
-            background: var(--hover);
-            transition: 0.2s;
-        }
+    td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--outline);
+      font-size: 15px;
+    }
 
-        /* DOWNLOAD ICON (Circular style) */
-        .download-icon {
-            font-size: 1.3rem;
-            color: var(--accent);
-            transition: 0.2s;
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            border-radius: 8px;
-            background: rgba(30, 58, 138, 0.1);
-        }
+    tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
 
-        .download-icon:hover {
-            color: var(--gold);
-            background: var(--hover);
-            transform: scale(1.1);
-        }
+    tr:hover {
+      background: var(--hover);
+      transition: 0.2s;
+    }
 
-        /* ANIMATION DEFINITION */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    /* DOWNLOAD ICON (Circular style) */
+    .download-icon {
+      font-size: 1.3rem;
+      color: var(--accent);
+      transition: 0.2s;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 8px;
+      background: rgba(30, 58, 138, 0.1);
+    }
 
-        /* CONTACT SECTION */
-        .contact-section {
-            background: var(--footer-bg);
-            color: var(--footer-fg);
-            padding: 70px 20px;
-            border-top-left-radius: 40px;
-            border-top-right-radius: 40px;
-            text-align: center;
-            margin-top: 60px;
-        }
+    .download-icon:hover {
+      color: var(--gold);
+      background: var(--hover);
+      transform: scale(1.1);
+    }
 
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 28px;
-            margin-top: 20px;
-        }
+    /* ANIMATION DEFINITION */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-        .contact-card {
-            background: var(--surface);
-            color: var(--accent2);
-            border-radius: 14px;
-            padding: 24px;
-            width: 260px;
-            box-shadow: var(--shadow-box);
-            transition: transform 0.3s;
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .contact-card:hover {
-            transform: translateY(-6px);
-        }
+    /* CONTACT SECTION */
+    .contact-section {
+      background: var(--footer-bg);
+      color: var(--footer-fg);
+      padding: 70px 20px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      text-align: center;
+      margin-top: 60px;
+    }
 
-        .contact-card i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 10px;
-            display: block;
-        }
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 20px;
+    }
 
-        /* FOOTER */
-        footer {
-            background: #0A0A0A;
-            color: #f6faf8;
-            text-align: center;
-            padding: 40px 20px 25px;
-        }
+    .contact-card {
+      background: var(--surface);
+      color: var(--accent2);
+      border-radius: 14px;
+      padding: 24px;
+      width: 260px;
+      box-shadow: var(--shadow-box);
+      transition: transform 0.3s;
+    }
 
-        .footer-links a {
-            color: #f6f8f7;
-            text-decoration: none;
-            margin: 0 10px;
-        }
+    .contact-card:hover {
+      transform: translateY(-6px);
+    }
 
-        .footer-links a:hover,
-        .bottom-bar a:hover {
-            color: var(--gold);
-        }
+    .contact-card i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
 
-        .social-icons {
-            margin-bottom: 15px;
-        }
+    /* FOOTER */
+    footer {
+      background: #0A0A0A;
+      color: #f6faf8;
+      text-align: center;
+      padding: 40px 20px 25px;
+    }
 
-        .social-icons a {
-            color: #fbfdfc;
-            margin: 0 10px;
-            font-size: 1.3rem;
-            transition: 0.3s;
-        }
+    .footer-links a {
+      color: #f6f8f7;
+      text-decoration: none;
+      margin: 0 10px;
+    }
 
-        .social-icons a:hover {
-            color: var(--gold);
-        }
+    .footer-links a:hover,
+    .bottom-bar a:hover {
+      color: var(--gold);
+    }
 
-        .bottom-bar {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #f7faf9;
-        }
+    .social-icons {
+      margin-bottom: 15px;
+    }
 
-        .bottom-bar a {
-            color: var(--gold);
-            text-decoration: none;
-        }
+    .social-icons a {
+      color: #fbfdfc;
+      margin: 0 10px;
+      font-size: 1.3rem;
+      transition: 0.3s;
+    }
 
-        /* RESPONSIVE */
-        .menu-toggle {
-            display: none;
-            font-size: 1.6rem;
-            color: var(--accent);
-            cursor: pointer;
-        }
+    .social-icons a:hover {
+      color: var(--gold);
+    }
 
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
+    .bottom-bar {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #f7faf9;
+    }
 
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                background: var(--surface);
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            }
+    .bottom-bar a {
+      color: var(--gold);
+      text-decoration: none;
+    }
 
-            nav ul.show {
-                display: flex;
-            }
+    /* RESPONSIVE */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
 
-            nav ul li {
-                padding: 10px 0;
-                text-align: center;
-                width: 100%;
-            }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
 
-            nav ul li a {
-                justify-content: center;
-            }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: var(--surface);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
 
-            .content {
-                text-align: center;
-                margin: 20px 15px;
-                padding: 24px;
-                border-left: none;
-                border-top: 5px solid var(--accent);
-            }
+      nav ul.show {
+        display: flex;
+      }
 
-            .data-table th, .data-table td {
-                text-align: center;
-                font-size: 0.85rem;
-            }
+      nav ul li {
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
+      }
 
-            .table-wrapper {
-                overflow-x: auto;
-                display: block;
-            }
-        }
-    </style>
+      nav ul li a {
+        justify-content: center;
+      }
+
+      .content {
+        text-align: center;
+        margin: 20px 15px;
+        padding: 24px;
+        border-left: none;
+        border-top: 5px solid var(--accent);
+      }
+
+      .data-table th,
+      .data-table td {
+        text-align: center;
+        font-size: 0.85rem;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+        display: block;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <nav>
-        <div class="brand">
-            <img src="Open.png" alt="Logo">
-            <div>
-                <h4>Open Data Lab</h4>
-                <p>Government College Kasaragod</p>
-            </div>
-        </div>
-        <div class="menu-toggle" id="menu-toggle">
-            <i class="fa fa-bars"></i>
-        </div>
-        <ul id="nav-links">
-            <li><a href="index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
-            <li><a href="agriculture.html" class="active"><i class="fas fa-seedling"></i>Agriculture</a></li>
-            <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
-            <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <div class="brand">
+      <img src="Open.png" alt="Logo">
+      <div>
+        <h4>Open Data Lab</h4>
+        <p>Government College Kasaragod</p>
+      </div>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fa fa-bars"></i>
+    </div>
+    <ul id="nav-links">
+      <li><a href="index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li><a href="agriculture.html" class="active"><i class="fas fa-seedling"></i>Agriculture</a></li>
+      <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
+    </ul>
+  </nav>
 
-    <header>
-        <h1>GCK Open Data Lab</h1>
-        <h2>APY Statistics</h2>
-    </header>
+  <header>
+    <h1>GCK Open Data Lab</h1>
+    <h2>APY Statistics</h2>
+  </header>
 
-    <section class="content">
-        <h4><b>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</b></h4>
+  <section class="content">
+    <h4><b>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</b></h4>
 
-        <div class="table-wrapper">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Dataset</th>
-                        <th>View Data</th>
-                        <th>Download</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
-                        <td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-                        <td>
-                            <center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a></center>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>View Data</th>
+            <th>Download</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Area, Production, Productivity of Coconut in Kerala and India (1990-91 to 2020-21)</td>
+            <td><a href="agriculture 3.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+            <td>
+              <center><a href="agriculture 3.xlsx" download class="download-icon"><i class="fas fa-download"></i></a>
+              </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
-            Source: Economic Review: 1995, 2000, 2004, 2010, 2021 | Directorate of Economics and Statistics, CMIE, Coconut Development Board.
-        </p>
+    <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
+      Source: Economic Review: 1995, 2000, 2004, 2010, 2021 | Directorate of Economics and Statistics, CMIE, Coconut
+      Development Board.
+    </p>
 
-        <div class="table-wrapper">
-            <div class="excel-table"></div>
-        </div>
-    </section>
+    <div class="table-wrapper">
+      <div class="excel-table"></div>
+    </div>
+  </section>
 
-    <section id="contact" class="contact-section">
-        <h2>Contact Us</h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <i class="fa fa-envelope"></i>
-                <h4>Email</h4>
-                <p>odlab@gck.ac.in</p>
-            </div>
-            <div class="contact-card">
-                <i class="fa fa-map-marker-alt"></i>
-                <h4>Address</h4>
-                <p>Government College Kasaragod, Kerala, India</p>
-            </div>
-            <div class="contact-card">
-                <i class="fa fa-phone"></i>
-                <h4>Phone</h4>
-                <p>+91-9495122006</p>
-            </div>
-        </div>
-    </section>
+  <section id="contact" class="contact-section">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fa fa-envelope"></i>
+        <h4>Email</h4>
+        <p>odlab@gck.ac.in</p>
+      </div>
+      <div class="contact-card">
+        <i class="fa fa-map-marker-alt"></i>
+        <h4>Address</h4>
+        <p>Government College Kasaragod, Kerala, India</p>
+      </div>
+      <div class="contact-card">
+        <i class="fa fa-phone"></i>
+        <h4>Phone</h4>
+        <p>+91-9495122006</p>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <div class="footer-links">
-            <a href="index.html#work">Our Works</a> | <a href="index.html#about">About</a> | <a href="index.html#contact">Contact</a>
-        </div>
-        <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#"><i class="fa-solid fa-globe"></i></a>
-        </div>
-        <div class="bottom-bar">
-            © 2025 Open Data Lab | Powered by <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
-        </div>
-    </footer>
+  <footer>
+    <div class="footer-links">
+      <a href="index.html#work">Our Works</a> | <a href="index.html#about">About</a> | <a
+        href="index.html#contact">Contact</a>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#"><i class="fa-solid fa-globe"></i></a>
+    </div>
+    <div class="bottom-bar">
+      © 2025 Open Data Lab | Powered by <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+    </div>
+  </footer>
 
-    <script>
-        const menuToggle = document.getElementById("menu-toggle");
-        const navLinks = document.getElementById("nav-links");
-        menuToggle.addEventListener("click", () => { navLinks.classList.toggle("show"); });
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    menuToggle.addEventListener("click", () => { navLinks.classList.toggle("show"); });
 
-        (async () => {
-            const container = document.querySelector(".excel-table");
-            try {
-                const response = await fetch("./agriculture 3.xlsx");
-                const data = await response.arrayBuffer();
-                const workbook = XLSX.read(data);
-                const sheetName = workbook.SheetNames[0];
-                const html = XLSX.utils.sheet_to_html(workbook.Sheets[sheetName], { editable: false });
-                container.innerHTML = html;
-                const table = container.querySelector("table");
-                table.classList.add("data-table");
-            } catch (e) {
-                console.error("Excel loading failed", e);
-            }
-        })();
-    </script>
+    (async () => {
+      const container = document.querySelector(".excel-table");
+      try {
+        const response = await fetch("./agriculture 3.xlsx");
+        const data = await response.arrayBuffer();
+        const workbook = XLSX.read(data);
+        const sheetName = workbook.SheetNames[0];
+        const html = XLSX.utils.sheet_to_html(workbook.Sheets[sheetName], { editable: false });
+        container.innerHTML = html;
+        const table = container.querySelector("table");
+        table.classList.add("data-table");
+      } catch (e) {
+        console.error("Excel loading failed", e);
+      }
+    })();
+  </script>
 </body>
+
 </html>
