@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Agriculture Data - Open Data Lab | GCK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <style>
         :root {
-            --bg: #e8e9eb;
+            --bg: #F8FAFC;
             --surface: #ffffff;
             --accent: #1E3A8A;
             --accent2: #0F172A;
@@ -57,20 +60,21 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .brand img {
             height: 45px;
             width: auto;
+            border-radius: 8px;
         }
 
         .brand h4 {
-            margin-top: 10px;
             font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 18px;
-            color: #333;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 0;
         }
 
         .brand div {
@@ -91,8 +95,6 @@
             display: flex;
             align-items: center;
             gap: 24px;
-            margin: 0;
-            padding: 0;
         }
 
         nav ul li a {
@@ -113,61 +115,30 @@
             top: 1px;
         }
 
-        nav ul li a:hover {
+        nav ul li {
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 600;
+            transition: 0.2s;
+            padding: 6px 14px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
             background: var(--hover);
             color: var(--gold);
         }
 
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--muted);
-        }
-
-            /* Hamburger menu (mobile) */
-    .menu-toggle {
-      display: none;
-      font-size: 1.6rem;
-      color: var(--accent);
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--surface);
-        position: absolute;
-        top: 70px;
-        left: 0;
-        border-top: 1px solid var(--outline);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        transition: all 0.3s ease-in-out;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      nav ul li {
-        text-align: center;
-        width: 100%;
-        padding: 10px 0;
-      }
-
-      nav ul li a {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
- /* HEADER */
+        /* HEADER */
         header {
             text-align: center;
             padding: 60px 20px 40px;
@@ -181,125 +152,98 @@
             font-weight: 800;
             letter-spacing: 1px;
         }
+
         header h2 {
             color: var(--accent);
             font-weight: 500;
             font-size: 1.1rem;
             margin-top: 10px;
         }
-        @media(max-width:768px){
-            header h1{
-                font-size: 1.8rem;
-                font-weight: 400;
-            }
-            header h2{
-                font-size: .7rem;
-            }
-        }
-/* main */
+
+        /* MAIN CONTENT + ANIMATION */
         .content {
             max-width: 1000px;
             margin: 40px auto;
             background: var(--surface);
-            padding: 30px 40px;
+            padding: 32px;
             border-radius: 16px;
             border-left: 5px solid var(--accent);
             box-shadow: var(--shadow-box);
+            animation: fadeIn 0.8s ease-in-out;
         }
-        .content h4{
+
+        .content h4 {
             color: var(--accent2);
-            font-size: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
-            @media (max-width: 768px) {
-        .content {
-            max-width: 100%;
-            padding: 12px 14px;   
-            margin: 16px 10px;    
+
+        /* DATA TABLE STYLING */
+        .data-table,
+        table {
+            width: 100% !important;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--surface);
             border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-box);
         }
-            .content h3 {
-            color: var(--accent2);
-            font-size: 1.7rem;
-            font-weight: 700;
+
+        th {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: white;
+            padding: 16px 12px;
             text-align: left;
-            margin-bottom: 16px;
-            padding-left: 8px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid var(--outline);
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        tr:hover {
+            background: var(--hover);
+            transition: 0.2s;
+        }
+
+        /* DOWNLOAD ICON (Circular style) */
+        .download-icon {
+            font-size: 1.3rem;
+            color: var(--accent);
+            transition: 0.2s;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 8px;
+            background: rgba(30, 58, 138, 0.1);
+        }
+
+        .download-icon:hover {
             color: var(--gold);
+            background: var(--hover);
+            transform: scale(1.1);
         }
-     }
 
-             /* table */
+        /* ANIMATION DEFINITION */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
 
-             /* TABLE WRAPPER */
-        .table-wrapper {
-          width: 100%;
-          overflow-x: auto;
-          background: #ffffff;
-          border-radius: 14px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-          margin-top: 20px;
-        }
-        
-        /* MAIN TABLE */
-        .data-table {
-          width: 100%;
-          min-width: 900px;
-          border-collapse: separate;
-          border-spacing: 0;
-          font-family: "Inter", "Segoe UI", sans-serif;
-          font-size: 0.92rem;
-          color: #0f172a;
-        }
-        
-        /* HEADER */
-        .data-table thead th {
-          position: sticky;
-          top: 0;
-          z-index: 2;
-          background: linear-gradient(135deg, #1e3a8a, #2563eb);
-          color: #ffffff;
-          text-transform: uppercase;
-          font-weight: 600;
-          letter-spacing: 0.04em;
-          padding: 14px 12px;
-          border-bottom: 2px solid #c7d2fe;
-        }
-        
-        /* BODY CELLS */
-        .data-table tbody td {
-          padding: 12px;
-          text-align: center;
-          border-bottom: 1px solid #e5e7eb;
-        }
-        
-        /* ZEBRA STRIPES */
-        .data-table tbody tr:nth-child(even) {
-          background-color: #f8fafc;
-        }
-        
-        /* ROW HOVER */
-        .data-table tbody tr:hover {
-          background-color: #eef2ff;
-          transition: background 0.2s ease;
-        }
-        
-        /* FIRST COLUMN HIGHLIGHT */
-        .data-table tbody td:first-child {
-          font-weight: 600;
-          color: #1e40af;
-        }
-        
-        /* FOOTER (IF EXISTS) */
-        .data-table tfoot td {
-          background: #f1f5f9;
-          font-weight: 600;
-        }
-        
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 768px) {
-          .data-table {
-            font-size: 0.85rem;
-          }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* CONTACT SECTION */
@@ -310,14 +254,7 @@
             border-top-left-radius: 40px;
             border-top-right-radius: 40px;
             text-align: center;
-            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-section h2 {
-            font-size: 1.7rem;
-            margin-bottom: 25px;
-            font-weight: 700;
-            color: var(--gold);
+            margin-top: 60px;
         }
 
         .contact-grid {
@@ -335,28 +272,21 @@
             padding: 24px;
             width: 260px;
             box-shadow: var(--shadow-box);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
 
         .contact-card:hover {
             transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
         }
 
         .contact-card i {
             font-size: 2rem;
             color: var(--accent);
             margin-bottom: 10px;
+            display: block;
         }
 
-        .contact-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 6px;
-            color: var(--accent2);
-        }
-
-        
-                /* FOOTER */
+        /* FOOTER */
         footer {
             background: #0A0A0A;
             color: #f6faf8;
@@ -368,18 +298,22 @@
             color: #f6f8f7;
             text-decoration: none;
             margin: 0 10px;
-            font-weight: 500;
         }
 
-        .footer-links a:hover {
+        .footer-links a:hover,
+        .bottom-bar a:hover {
             color: var(--gold);
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
         }
 
         .social-icons a {
             color: #fbfdfc;
             margin: 0 10px;
             font-size: 1.3rem;
-            transition: color 0.3s;
+            transition: 0.3s;
         }
 
         .social-icons a:hover {
@@ -396,11 +330,68 @@
             color: var(--gold);
             text-decoration: none;
         }
-    </style>
 
+        /* RESPONSIVE */
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: var(--surface);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                padding: 10px 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            nav ul li a {
+                justify-content: center;
+            }
+
+            .content {
+                text-align: center;
+                margin: 20px 15px;
+                padding: 24px;
+                border-left: none;
+                border-top: 5px solid var(--accent);
+            }
+
+            .data-table th,
+            .data-table td {
+                text-align: center;
+                font-size: 0.85rem;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+                display: block;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <!-- navbar -->
     <nav>
         <div class="brand">
             <img src="Open.png" alt="Logo">
@@ -409,81 +400,69 @@
                 <p>Government College Kasaragod</p>
             </div>
         </div>
-
-        <!--icon -->
         <div class="menu-toggle" id="menu-toggle">
             <i class="fa fa-bars"></i>
         </div>
-
         <ul id="nav-links">
-            <li><a href="/index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
-            <!-- <li><a href="#works"><i class="fas fa-cog fa-fw"></i>Our Works</a></li> -->
-            <!-- <li><a href="#about"><i class="fa fa-user fa-fw"></i>About</a></li> -->
+            <li><a href="index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="agriculture.html" class="active"><i class="fas fa-seedling"></i>Agriculture</a></li>
+            <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
             <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
         </ul>
     </nav>
-    <!--header-->
+
     <header>
         <h1>GCK Open Data Lab</h1>
         <h2>APY Statistics</h2>
     </header>
 
-    <!--main content goes here-->
     <section class="content">
-            <h4><b>Area, Production, Yield Statistics of Cereals in India(1950-2022)</b></h4><br>
+        <h4><b>Area, Production, Yield Statistics of Cereals in India (1950-2022)</b></h4>
 
-        <p>Source: Economic & Political Weekly Research Foundation -EPWRF (1950-2022)</p>
-        <p>Note: 2016-17 to 2020-21 - Data for the years are Final Estimates as released on 25.05.2022</p>
-        <p>2020-21 to 2020-21 - : All-India:-> Data for the year 2020-21 are Final Estimates as released on 16.02.2022 .</p>
-        <p>2021-22 to 2021-22 - : All-India:-> Data for the year 2021-22 are 3rd Advance Estimates as released on 19.05.2022 .</p>
-        <p>The yield rates given for all foodgrains have been worked out on the basis of production & area figures taken in '000 units.</p>
-        <p>Description : Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India</p>
-        <!-- future table -->
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Dataset</th>
+                        <th>View Data</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Area, Production, Yield Statistics of Cereals in India (1950-2022)</td>
+                        <td><a href="agriculture 6.html">View data <i class="fas fa-external-link-alt"></i></a></td>
+                        <td>
+                            <center><a href="agriculture 6.xlsx" download class="download-icon"><i
+                                        class="fas fa-download"></i></a>
+                            </center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
+            Source: Economic & Political Weekly Research Foundation -EPWRF (1950-2022)
+        </p>
+        <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
+           Note: 2016-17 to 2020-21 - Data for the years are Final Estimates as released on 25.05.2022
+        </p>
+        <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
+           2020-21 to 2020-21 - : All-India:-> Data for the year 2020-21 are Final Estimates as released on 16.02.2022.
+        </p>
+        <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
+          The yield rates given for all foodgrains have been worked out on the basis of production & area figures taken in '000 units.
+        </p>
+        <p style="font-size: 0.9rem; color: #64748B; margin-top: 20px;">
+          Description : Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India
+        </p>
+
         <div class="table-wrapper">
             <div class="excel-table"></div>
         </div>
     </section>
-              <!--  Hamburger menu toggle -->
-    <script>
-        const menuToggle = document.getElementById("menu-toggle");
-        const navLinks = document.getElementById("nav-links");
 
-        menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-        });
-
-
-            (async () => {
-                // 1️⃣ Select container
-                const container = document.querySelector(".excel-table");
-            
-                // 2️⃣ Fetch Excel file
-                const response = await fetch("./agriculture 6.xlsx");
-                const data = await response.arrayBuffer();
-            
-                // 3️⃣ Read workbook
-                const workbook = XLSX.read(data);
-                console.log(workbook);
-            
-                // 4️⃣ Get first sheet
-                const sheetName = workbook.SheetNames[0];
-            
-                // 5️⃣ Convert to HTML
-                const html = XLSX.utils.sheet_to_html(
-                    workbook.Sheets[sheetName],
-                    { editable: false }
-                );
-            
-                // 6️⃣ Insert table
-                container.innerHTML = html;
-            
-                // 7️⃣ Style the generated table
-                const table = container.querySelector("table");
-                table.classList.add("data-table");
-            })();
-    </script>
-
-    <!-- CONTACT -->
     <section id="contact" class="contact-section">
         <h2>Contact Us</h2>
         <div class="contact-grid">
@@ -505,12 +484,10 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-links">
-            <a href="#works">Our Works</a> |
-            <a href="#about">About</a> |
-            <a href="#contact">Contact</a>
+            <a href="index.html#work">Our Works</a> | <a href="index.html#about">About</a> | <a
+                href="index.html#contact">Contact</a>
         </div>
         <div class="social-icons">
             <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -519,9 +496,32 @@
             <a href="#"><i class="fa-solid fa-globe"></i></a>
         </div>
         <div class="bottom-bar">
-            © 2025 Open Data Lab | Powered by
-            <a href="https://gck.ac.in/" target="_blank">Government College Kasaragod</a>
+            © 2025 Open Data Lab | Powered by <a href="https://gck.ac.in/" target="_blank">Government College
+                Kasaragod</a>
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+        menuToggle.addEventListener("click", () => { navLinks.classList.toggle("show"); });
+
+        (async () => {
+            const container = document.querySelector(".excel-table");
+            try {
+                const response = await fetch("./agriculture 3.xlsx");
+                const data = await response.arrayBuffer();
+                const workbook = XLSX.read(data);
+                const sheetName = workbook.SheetNames[0];
+                const html = XLSX.utils.sheet_to_html(workbook.Sheets[sheetName], { editable: false });
+                container.innerHTML = html;
+                const table = container.querySelector("table");
+                table.classList.add("data-table");
+            } catch (e) {
+                console.error("Excel loading failed", e);
+            }
+        })();
+    </script>
 </body>
+
 </html>
