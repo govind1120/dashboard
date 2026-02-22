@@ -1,139 +1,495 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Labour Data</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<style>
- table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 75%;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Data - Open Data Lab | GCK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    <style>
+        :root {
+            --bg: #F8FAFC;
+            --surface: #ffffff;
+            --accent: #1E3A8A;
+            --accent2: #0F172A;
+            --muted: #334155;
+            --outline: #CBD5E1;
+            --text: #1E293B;
+            --hover: #FFF7E0;
+            --footer-bg: #0F172A;
+            --footer-fg: #E0E7FF;
+            --shadow-box: 0 3px 20px rgba(30, 58, 138, 0.12);
+            --shadow-hover: 0 8px 30px rgba(30, 58, 138, 0.2);
+            --gold: #EAB308;
+        }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Open Data Lab</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-@-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-@keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
-}
+        body {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
+        /* NAVBAR */
+        nav {
+            background: var(--surface);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 10px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--outline);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            height: 70px;
+        }
 
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
-</style>
-</head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+        .brand img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+        }
 
-<!-- !PAGE CONTENT -->
-<div class="w3-main" style="margin-left:00px">
+        .brand h4 {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 0;
+        }
 
-  <!-- Header -->
-  <header id="portfolio">
-    <div class="w3-container">
-    <h1><b>GCK OPEN DATA LAB</b></h1>
-    <div class="w3-section w3-bottombar w3-padding-16">
-    </div>
-    </div>
-  </header>
-  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)</b></h4><br>
-    <div class="w3-row-padding">
-      <div class="table"></div>
-    <script>
-        let table = document.querySelector(".table");
-        (
-            async() => {
-                let workbook = XLSX.read(await (await fetch("./labour 4.xlsx")).arrayBuffer());
-                console.log(workbook);
-                let worksheet = workbook.SheetNames;
-                worksheet.forEach(name => {
-                    let html = XLSX.utils.sheet_to_html(workbook.Sheets[name]);
-                    table.innerHTML += `
-                    ${html}
-                    `;
-                })
+        .brand div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .brand p {
+            font-size: 0.8rem;
+            color: #64748B;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 600;
+            transition: 0.2s;
+            padding: 6px 14px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 6px;
+            font-size: 0.9rem;
+            position: relative;
+            top: 1px;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--hover);
+            color: var(--gold);
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #BFDBFE, #E0E7FF);
+            border-bottom: 2px solid var(--outline);
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: var(--accent2);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        header h2 {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* MAIN CONTENT + ANIMATION */
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 16px;
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow-box);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .content h4 {
+            color: var(--accent2);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* DATA TABLE STYLING */
+        .data-table,
+        table {
+            width: 100% !important;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-box);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: white;
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid var(--outline);
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        tr:hover {
+            background: var(--hover);
+            transition: 0.2s;
+        }
+
+        /* DOWNLOAD ICON (Circular style) */
+        .download-icon {
+            font-size: 1.3rem;
+            color: var(--accent);
+            transition: 0.2s;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 8px;
+            background: rgba(30, 58, 138, 0.1);
+        }
+
+        .download-icon:hover {
+            color: var(--gold);
+            background: var(--hover);
+            transform: scale(1.1);
+        }
+
+        /* ANIMATION DEFINITION */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-        )()
-    </script>
-  <p>Source: Census India-2011</p>
-  <p>Note: Table based on estimates</p>
-  <p>INDUSTRIAL CATEGORIES :</p>
-  <p>A-Agriculture, Forestry and Fishing</p>
-  <p>B-Mining and Quarrying</p>
-  <p>C-Manufacturing</p>  
-  <p>D-Electricity, Gas, steam and Air conditioning Supply</p>  
-  <p>E-Water Supply; (Sewerage, Waste Management and remediation activities)</p> 
-  <p>F-Construction; G- Wholesale and Retail Trade (Repair of motor vehicles and motor cycles)</p>  
-  <p>G-Wholesale and Retail Trade (Repair of motor vehicles and motor cycles)</p>  
-  <p>H-Transportation and Storage</p> 
-  <p>I-Accomodation and food service activities</p>  
-  <p>J-Information and Communication</p> 
-  <p>K-Financial and Insurance activities</p>  
-  <p>L-Real Estate activities</p> 
-  <p>M-Professional, Scientific and Technical activities</p> 
-  <p>N-Administrative and support service activities</p>  
-  <p>O-Public Administration and Defence, Compulsory Social Security</p>  
-  <p>P-Education</p>  
-  <p>Q-Human Health and Social Work activities</p> 
-  <p>R-Arts, Entertainment and recreation</p> 
-  <p>S-Other Service Activities</p> 
-  <p>T-Activities of Households as Employers: Undifferentiated Goods and Services</p>  
-  <p>U-Activities of Extra-Territorial Organisations and Bodies</p> 
-  <p>HHI-Household Industries</p>
-  <p>Non HHI- Non Household Industries</p>
-<!-- End page content -->
-</div>
 
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background: var(--footer-bg);
+            color: var(--footer-fg);
+            padding: 70px 20px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            color: var(--accent2);
+            border-radius: 14px;
+            padding: 24px;
+            width: 260px;
+            box-shadow: var(--shadow-box);
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0A0A0A;
+            color: #f6faf8;
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        .footer-links a {
+            color: #f6f8f7;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover,
+        .bottom-bar a:hover {
+            color: var(--gold);
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fbfdfc;
+            margin: 0 10px;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+
+        .bottom-bar {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #f7faf9;
+        }
+
+        .bottom-bar a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* Hamburger menu (mobile) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--surface);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                border-top: 1px solid var(--outline);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease-in-out;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            nav ul li a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="brand">
+            <img src="Open.png" alt="Logo">
+            <div>
+                <h4>Open Data Lab</h4>
+                <p>Government College Kasaragod</p>
+            </div>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fa fa-bars"></i>
+        </div>
+        <ul id="nav-links">
+            <li><a href="index.html"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="agriculture.html" class="active"><i class="fas fa-seedling"></i>Labour</a></li>
+            <li><a href="agriculture.html#about"><i class="fa fa-user fa-fw"></i>About</a></li>
+            <li><a href="#contact"><i class="fa fa-envelope fa-fw"></i>Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>GCK Open Data Lab</h1>
+    </header>
+
+    <section class="content">
+        <h4><b>Marginal Workers Classified By Age, Industrial Category And Sex-2011(Table 4)</b></h4>
+
+        <div class="table"></div>
+        <script>
+            let table = document.querySelector(".table");
+            (
+                async() => {
+                    let workbook = XLSX.read(await (await fetch("./labour 4.xlsx")).arrayBuffer());
+                    console.log(workbook);
+                    let worksheet = workbook.SheetNames;
+                    worksheet.forEach(name => {
+                        let html = XLSX.utils.sheet_to_html(workbook.Sheets[name]);
+                        table.innerHTML += `
+                        ${html}
+                        `;
+                    })
+                }
+            )()
+        </script>
+
+        <p>Source: Census India-2011</p>
+        <p>Note: Table based on estimates</p>
+        <p>INDUSTRIAL CATEGORIES :</p>
+        <p>A-Agriculture, Forestry and Fishing</p>
+        <p>B-Mining and Quarrying</p>
+        <p>C-Manufacturing</p>  
+        <p>D-Electricity, Gas, steam and Air conditioning Supply</p>  
+        <p>E-Water Supply; (Sewerage, Waste Management and remediation activities)</p> 
+        <p>F-Construction; G- Wholesale and Retail Trade (Repair of motor vehicles and motor cycles)</p>  
+        <p>G-Wholesale and Retail Trade (Repair of motor vehicles and motor cycles)</p>  
+        <p>H-Transportation and Storage</p> 
+        <p>I-Accomodation and food service activities</p>  
+        <p>J-Information and Communication</p> 
+        <p>K-Financial and Insurance activities</p>  
+        <p>L-Real Estate activities</p> 
+        <p>M-Professional, Scientific and Technical activities</p> 
+        <p>N-Administrative and support service activities</p>  
+        <p>O-Public Administration and Defence, Compulsory Social Security</p>  
+        <p>P-Education</p>  
+        <p>Q-Human Health and Social Work activities</p> 
+        <p>R-Arts, Entertainment and recreation</p> 
+        <p>S-Other Service Activities</p> 
+        <p>T-Activities of Households as Employers: Undifferentiated Goods and Services</p>  
+        <p>U-Activities of Extra-Territorial Organisations and Bodies</p> 
+        <p>HHI-Household Industries</p>
+        <p>Non HHI- Non Household Industries</p>
+        <!-- End page content -->
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i class="fa fa-envelope"></i>
+                <h4>Email</h4>
+                <p>odlab@gck.ac.in</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa fa-map-marker-alt"></i>
+                <h4>Address</h4>
+                <p>Government College Kasaragod, Kerala, India</p>
+            </div>
+            <div class="contact-card">
+                <i class="fa fa-phone"></i>
+                <h4>Phone</h4>
+                <p>+91-9495122006</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html#work">Our Works</a> | <a href="index.html#about">About</a> | <a
+                href="index.html#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-solid fa-globe"></i></a>
+        </div>
+        <div class="bottom-bar">
+            © 2025 Open Data Lab | Powered by <a href="https://gck.ac.in/" target="_blank">Government College
+                Kasaragod</a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+        menuToggle.addEventListener("click", () => { navLinks.classList.toggle("show"); });
+
+        (async () => {
+            const container = document.querySelector(".excel-table");
+            try {
+                const response = await fetch("./agriculture 1.xlsx");
+                const data = await response.arrayBuffer();
+                const workbook = XLSX.read(data);
+                const sheetName = workbook.SheetNames[0];
+                const html = XLSX.utils.sheet_to_html(workbook.Sheets[sheetName], { editable: false });
+                container.innerHTML = html;
+                const table = container.querySelector("table");
+                table.classList.add("data-table");
+            } catch (e) {
+                console.error("Excel loading failed", e);
+            }
+        })();
+    </script>
 </body>
 </html>
