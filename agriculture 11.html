@@ -419,29 +419,6 @@
     <section class="content">
         <h4><b>Annual Growth Rate of State-wise Production of Cereals in India (1962-2021)</b></h4>
 
-        <div class="table-wrapper">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Dataset</th>
-                        <th>View Data</th>
-                        <th>Download</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Annual Growth Rate of State-wise Production of Cereals in India (1962-2021)</td>
-                        <td><a href="agriculture 11.html">View data <i class="fas fa-external-link-alt"></i></a></td>
-                        <td>
-                            <center><a href="agriculture 11.xlsx" download class="download-icon"><i
-                                        class="fas fa-download"></i></a>
-                            </center>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
         <p>Economic and Political Weekly Research Foundation (EPWRF)Foundation1950-2019</p>
         <p>Source Description: 1965-66 to 2007-08: Plantation Crops: Coconut:-> Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India</p>
         <p>2008-09 to 2016-17: Plantation Crops: Coconut:-> Indian Horticulture Database, National Horticulture Board</p>
@@ -498,7 +475,7 @@
         (async () => {
             const container = document.querySelector(".excel-table");
             try {
-                const response = await fetch("./agriculture 3.xlsx");
+                const response = await fetch("./agriculture 11.xlsx");
                 const data = await response.arrayBuffer();
                 const workbook = XLSX.read(data);
                 const sheetName = workbook.SheetNames[0];
