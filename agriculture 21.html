@@ -178,16 +178,31 @@
             margin-bottom: 15px;
         }
 
+        .table-wrapper {
+            width: 100%;
+            max-height: 68vh;
+            overflow: auto;
+            border: 1px solid var(--outline);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: var(--shadow-box);
+        }
+
+        .table-wrapper table {
+            width: auto !important;
+            min-width: 100%;
+            border-collapse: collapse;
+        }
+
         /* DATA TABLE STYLING */
         .data-table,
         table {
-            width: 100% !important;
             border-collapse: collapse;
-            margin: 30px 0;
+            margin: 0;
             background: var(--surface);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--shadow-box);
+            box-shadow: none;
         }
 
         th {
@@ -420,8 +435,9 @@
         <h4><b>Production Statistics of Turmeric in Kerala (1998-2020)</b></h4>
 
         <p>Source: EPWRF (Economic & Political Weekly Research Foundation)</p>
-        <p>Description : Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare, Ministry of Agriculture, Govt. of India</p>
-        
+        <p>Description : Directorate of Economics and Statistics, Dept. of Agriculture, Cooperation and Farmers Welfare,
+            Ministry of Agriculture, Govt. of India</p>
+
         <div class="table-wrapper">
             <div class="excel-table"></div>
         </div>
@@ -473,11 +489,32 @@
         (async () => {
             const container = document.querySelector(".excel-table");
             try {
-                const response = await fetch("./agriculture 21.xlsx");
+                const url = encodeURI("./agriculture 21.xlsx");
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
+                }
                 const data = await response.arrayBuffer();
-                const workbook = XLSX.read(data);
+                const workbook = XLSX.read(data, { type: "array" });
                 const sheetName = workbook.SheetNames[0];
-                const html = XLSX.utils.sheet_to_html(workbook.Sheets[sheetName], { editable: false });
+                const sheet = workbook.Sheets[sheetName];
+                if (sheet && sheet['!ref']) {
+                    const originalRef = XLSX.utils.decode_range(sheet['!ref']);
+                    let maxRow = 0;
+                    let maxCol = 0;
+                    Object.keys(sheet).forEach((address) => {
+                        if (address[0] === "!") return;
+                        const cell = XLSX.utils.decode_cell(address);
+                        maxRow = Math.max(maxRow, cell.r);
+                        maxCol = Math.max(maxCol, cell.c);
+                    });
+                    if (maxRow > originalRef.e.r || maxCol > originalRef.e.c) {
+                        sheet['!ref'] = XLSX.utils.encode_range(originalRef);
+                    } else {
+                        sheet['!ref'] = XLSX.utils.encode_range({ s: originalRef.s, e: { r: maxRow, c: maxCol } });
+                    }
+                }
+                const html = XLSX.utils.sheet_to_html(sheet, { editable: false });
                 container.innerHTML = html;
                 const table = container.querySelector("table");
                 table.classList.add("data-table");
